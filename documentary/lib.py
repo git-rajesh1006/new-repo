@@ -13,6 +13,7 @@ FR = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 FM = "/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf"
 _f = {}
 def font(sz, kind="b"):
+    sz = max(2, sz)
     k = (int(sz), kind)
     if k not in _f: _f[k] = ImageFont.truetype({"b": FB, "r": FR, "m": FM}[kind], int(sz * SS))
     return _f[k]
@@ -83,7 +84,7 @@ class Canvas:
         x, y = self.P(c); r *= SS
         self.d.arc([x - r, y - r, x + r, y + r], a0, a1, fill=col, width=int(w * SS))
     def text(self, s, xy, size, col=WHITE, anchor="mm", kind="b"):
-        if s: self.d.text(self.P(xy), s, font=font(size, kind), fill=col, anchor=anchor)
+        if s and size >= 2: self.d.text(self.P(xy), s, font=font(size, kind), fill=col, anchor=anchor)
     def tw(self, s, size, kind="b"): return font(size, kind).getlength(s) / SS
     def track(self, s, cx, cy, size, col, tracking=0.0, kind="b"):
         f = font(size, kind); ws = [f.getlength(ch) / SS for ch in s]; tot = sum(ws) + tracking * (len(s) - 1)
