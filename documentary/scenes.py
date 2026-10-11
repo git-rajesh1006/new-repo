@@ -274,9 +274,9 @@ def sc7(c, t, T):
             if weak and lbl: fillc = mix(P1, lc, 0.12)
             ow = 4 if (best and lbl) else 2
             c.rect(x, y, x + 280, y + 120, fill=fillc, outline=lc if lbl else P2, w=ow, r=14)
-            c.text("TAKE %d.%d" % (row + 1, col + 1), (x + 20, y + 34), 22, MUTE if not lbl else WHITE, anchor="lm", kind="m")
-            waveform(c, x + 24, x + 256, y + 78, 14, T, mix(P2, lc, .7 if lbl else .2), bars=24, w=4, seed=i, speed=2)
-            if lbl: c.text(lab, (x + 140, y + 100) if False else (x + 262, y + 34), 17, lc, anchor="rm")
+            c.text("TAKE %d.%d" % (row + 1, col + 1), (x + 20, y + 30), 22, MUTE if not lbl else WHITE, anchor="lm", kind="m")
+            waveform(c, x + 24, x + 256, y + 64, 12, T, mix(P2, lc, .7 if lbl else .2), bars=24, w=4, seed=i, speed=2)
+            if lbl: c.text(lab, (x + 140, y + 102), 18, lc)
     if t > 17.0:
         k = seg(t, 17.0, .6); c.text("FINAL SEQUENCE", (300, 765), 28, fade(YELLOW, k), anchor="lm")
         c.line((300, 790), (1620, 790), 3, fade(YELLOW, k))
