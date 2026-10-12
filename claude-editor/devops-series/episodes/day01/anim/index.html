@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="assets/gsap.min.js"></script>
+<style>
+@font-face { font-family: "HFMono"; src: url("assets/DejaVuSansMono-Bold.ttf"); font-weight: 700; }
+@font-face { font-family: "HFSans"; src: url("assets/DejaVuSans-Bold.ttf"); font-weight: 700; }
+:root { --bg:#0a0a0a; --acc:#00ff9c; --red:#ff4d4d; --dim:#6e6e6e; --fg:#f4f4f5; --panel:#141414; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { margin:0; width:1080px; height:1920px; overflow:hidden; background:var(--bg); }
+#root { position:relative; width:100%; height:100%; background:var(--bg); font-family:"HFSans", sans-serif; font-weight:700; color:var(--fg); overflow:hidden; }
+.mono { font-family:"HFMono", monospace; font-weight:700; }
+#grid { position:absolute; inset:0; opacity:.5;
+  background-image: linear-gradient(#1a1a1a 1px, transparent 1px), linear-gradient(90deg, #1a1a1a 1px, transparent 1px);
+  background-size: 90px 90px; }
+.scene { position:absolute; inset:0; opacity:0; }
+.abs { position:absolute; }
+.center { position:absolute; left:0; right:0; text-align:center; }
+.big { font-size:128px; line-height:1.05; letter-spacing:-2px; }
+.acc { color:var(--acc); } .red { color:var(--red); } .dim { color:var(--dim); }
+.box { padding-top:40px; justify-content:flex-start !important; position:absolute; border:4px solid var(--acc); border-radius:28px; background:var(--panel); display:flex; align-items:center; justify-content:center; flex-direction:column; }
+.badge { position:absolute; padding:16px 28px; border-radius:18px; background:#2a0f0f; border:3px solid var(--red); color:var(--red); font-size:40px; white-space:nowrap; }
+.node { position:absolute; left:140px; width:800px; height:150px; border:4px solid #2a2a2a; border-radius:24px; background:var(--panel); display:flex; align-items:center; padding:0 40px; font-size:48px; }
+.node .tag { margin-left:auto; font-size:30px; color:var(--dim); }
+.pill { position:absolute; left:140px; width:800px; padding:34px 0; text-align:center; border:4px solid var(--acc); border-radius:999px; font-size:50px; background:var(--panel); }
+#term { position:absolute; left:100px; width:880px; top:1010px; height:330px; border-radius:24px; background:#000; border:3px solid #2a2a2a; padding:30px 36px; font-size:34px; line-height:1.55; }
+#top { position:absolute; left:0; right:0; top:90px; text-align:center; font-size:30px; letter-spacing:6px; color:var(--dim); }
+#caps { position:absolute; left:60px; right:60px; top:1400px; height:200px; z-index:50; }
+.cap { position:absolute; left:0; right:0; top:0; text-align:center; font-size:76px; line-height:1.15; opacity:0; color:#fff; text-shadow:0 0 0 #000, 4px 4px 0 #000, -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1080" data-height="1920">
+  <div id="grid"></div>
+  <div id="top" class="mono">100 DAYS OF DEVOPS &nbsp;/&nbsp; DAY 01</div>
+
+  <!-- S1 hook 0-3 -->
+  <div class="scene" id="s1">
+    <div class="center big" id="s1a" style="top:250px">WHAT IS</div>
+    <div class="center big acc" id="s1b" style="top:390px;font-size:170px">DEVOPS?</div>
+    <div class="abs" id="lap" style="left:190px;top:760px;width:700px;height:430px;border:6px solid #3a3a3a;border-radius:24px;background:#050505"></div>
+    <div class="abs" style="left:110px;top:1190px;width:860px;height:26px;border-radius:0 0 40px 40px;background:#2a2a2a"></div>
+    <div class="abs mono" id="code" style="left:240px;top:810px;font-size:38px;line-height:1.7;width:600px;color:var(--acc)"></div>
+  </div>
+
+  <!-- S2 problem 3-15 -->
+  <div class="scene" id="s2">
+    <div class="center mono" style="top:230px;font-size:46px" id="s2t">Dev ---X--- Ops</div>
+    <div class="box" id="dev" style="left:80px;top:520px;width:380px;height:380px"><div style="font-size:90px">DEV</div><div class="mono dim" style="font-size:30px">code ready</div></div>
+    <div class="box" id="ops" style="left:620px;top:520px;width:380px;height:380px;border-color:#5b5bff"><div style="font-size:90px">OPS</div><div class="mono dim" style="font-size:30px">servers</div></div>
+    <div class="abs mono" id="app" style="left:150px;top:740px;width:240px;height:110px;border-radius:20px;background:var(--acc);color:#000;display:flex;align-items:center;justify-content:center;font-size:54px">APP</div>
+    <div class="badge mono" id="e1" style="left:90px;top:960px">ERROR 500</div>
+    <div class="badge mono" id="e2" style="left:560px;top:1010px">DEPLOY FAILED</div>
+    <div class="badge mono" id="e3" style="left:250px;top:1090px">TIMEOUT</div>
+    <div class="badge mono" id="e4" style="left:640px;top:1170px">NOT IN SYNC</div>
+  </div>
+
+  <!-- S3 solution 15-30 -->
+  <div class="scene" id="s3">
+    <div class="box" id="d3" style="left:80px;top:560px;width:330px;height:330px"><div style="font-size:80px">DEV</div></div>
+    <div class="box" id="o3" style="left:670px;top:560px;width:330px;height:330px;border-color:#5b5bff"><div style="font-size:80px">OPS</div></div>
+    <div class="center big acc" id="s3a" style="top:330px;font-size:100px;opacity:0">DEV + OPS</div>
+    <div class="center big" id="s3b" style="top:960px;font-size:84px;opacity:0">COLLABORATION</div>
+    <div class="center big acc" id="s3c" style="top:1070px;font-size:84px;opacity:0">+ AUTOMATION</div>
+    <div class="abs pill mono" id="c1" style="top:1180px;opacity:0;font-size:44px">GOAL: FAST + RELIABLE</div>
+  </div>
+
+  <!-- S4 example 30-45 -->
+  <div class="scene" id="s4">
+    <div class="node" id="n1" style="top:250px"><span class="acc mono">GITHUB</span><span class="tag mono">git push</span></div>
+    <div class="node" id="n2" style="top:430px"><span class="acc mono">CI/CD PIPELINE</span><span class="tag mono">build</span></div>
+    <div class="node" id="n3" style="top:610px"><span class="acc mono">TESTING</span><span class="tag mono">auto tests</span></div>
+    <div class="node" id="n4" style="top:790px"><span class="acc mono">DEPLOYMENT</span><span class="tag mono">go live</span></div>
+    <div id="term" class="mono"></div>
+  </div>
+
+  <!-- S5 takeaway 45-53 -->
+  <div class="scene" id="s5">
+    <div class="center big" id="s5a" style="top:320px;font-size:110px">TOOLS <span class="red">&ne;</span></div>
+    <div class="center big acc" id="s5b" style="top:460px;font-size:130px">DEVOPS</div>
+    <div class="pill mono" id="p1" style="top:760px">AUTOMATION</div>
+    <div class="pill mono" id="p2" style="top:930px">COLLABORATION</div>
+    <div class="pill mono" id="p3" style="top:1100px;font-size:42px">CONTINUOUS IMPROVEMENT</div>
+  </div>
+
+  <!-- S6 CTA 53-60 -->
+  <div class="scene" id="s6">
+    <div class="center big" id="s6a" style="top:300px;font-size:104px">100 DAYS OF</div>
+    <div class="center big acc" id="s6b" style="top:430px;font-size:150px">DEVOPS</div>
+    <div class="center mono" id="s6c" style="top:700px;font-size:200px;color:#fff">DAY 1</div>
+    <div class="center mono dim" id="s6d" style="top:980px;font-size:40px">NEXT: DAY 2</div>
+    <div class="center mono acc" id="s6e" style="top:1050px;font-size:46px;padding:0 60px">DevOps Engineer em chestadu?</div>
+    <div class="center mono" id="s6f" style="top:1200px;font-size:58px;color:#000"><span id="fol" style="background:var(--acc);padding:20px 60px;border-radius:999px">FOLLOW</span></div>
+  </div>
+
+  <div id="caps"></div>
+</div>
+<script>
+const S = [0,3,15,30,45,53,60]; // scene boundaries (s) — retime here after the voiceover
+const tl = gsap.timeline({ paused: true });
+
+// scene fades
+["s1","s2","s3","s4","s5","s6"].forEach((id, i) => {
+  tl.fromTo("#"+id, {opacity:0}, {opacity:1, duration:0.25}, S[i]);
+  if (i < 5) tl.to("#"+id, {opacity:0, duration:0.25}, S[i+1]-0.25);
+});
+
+// S1
+tl.fromTo("#s1a", {y:-60,opacity:0}, {y:0,opacity:1,duration:.5,ease:"power3.out"}, 0.1);
+tl.fromTo("#s1b", {scale:.6,opacity:0}, {scale:1,opacity:1,duration:.6,ease:"back.out(1.7)"}, 0.5);
+tl.fromTo("#lap", {opacity:0,y:60}, {opacity:1,y:0,duration:.6,ease:"power3.out"}, 0.8);
+const codeLines = ["$ git commit -m 'app'","function deploy() {","  run(app);","}"];
+codeLines.forEach((l, i) => {
+  const el = document.createElement("div"); el.textContent = l; el.style.opacity = 0;
+  document.getElementById("code").appendChild(el);
+  tl.set(el, {opacity:1}, 1.2 + i*.35);
+});
+
+// S2
+tl.fromTo("#dev", {x:-200,opacity:0}, {x:0,opacity:1,duration:.6,ease:"power3.out"}, 3.2);
+tl.fromTo("#ops", {x:200,opacity:0}, {x:0,opacity:1,duration:.6,ease:"power3.out"}, 3.2);
+tl.fromTo("#s2t", {opacity:0}, {opacity:1,duration:.5}, 3.5);
+tl.fromTo("#app", {opacity:0,scale:.5}, {opacity:1,scale:1,duration:.4,ease:"back.out(2)"}, 4);
+tl.to("#app", {x:540,duration:1.6,ease:"power2.inOut"}, 5);
+tl.to("#app", {backgroundColor:"#ff4d4d",duration:.3}, 6.6);
+["e1","e2","e3","e4"].forEach((id, i) => {
+  const t = 6.8 + i*1.1;
+  tl.fromTo("#"+id, {opacity:0,scale:.3}, {opacity:1,scale:1,duration:.3,ease:"back.out(3)"}, t);
+  tl.to("#"+id, {x:"+=14",duration:.06,repeat:5,yoyo:true,ease:"none"}, t+.3);
+});
+tl.to("#ops", {borderColor:"#ff4d4d",duration:.4}, 6.8);
+
+// S3
+tl.fromTo("#d3", {x:-300,opacity:0}, {x:0,opacity:1,duration:.5}, 15.3);
+tl.fromTo("#o3", {x:300,opacity:0}, {x:0,opacity:1,duration:.5}, 15.3);
+tl.to("#d3", {x:125,duration:1,ease:"power3.inOut"}, 17);
+tl.to("#o3", {x:-125,duration:1,ease:"power3.inOut"}, 17);
+tl.to(["#d3","#o3"], {borderColor:"#00ff9c",duration:.3}, 18);
+tl.to("#s3a", {opacity:1,duration:.4}, 18);
+tl.fromTo("#s3b", {opacity:0,y:30}, {opacity:1,y:0,duration:.5}, 21);
+tl.fromTo("#s3c", {opacity:0,y:30}, {opacity:1,y:0,duration:.5}, 22.5);
+tl.fromTo("#c1", {opacity:0,scale:.8}, {opacity:1,scale:1,duration:.5,ease:"back.out(1.7)"}, 25);
+
+// S4
+const nodes = ["n1","n2","n3","n4"];
+nodes.forEach((id, i) => {
+  tl.fromTo("#"+id, {x:-120,opacity:0}, {x:0,opacity:1,duration:.4,ease:"power3.out"}, 30.4 + i*1.1);
+  tl.to("#"+id, {borderColor:"#00ff9c",duration:.3}, 31 + i*1.1);
+});
+const term = document.getElementById("term");
+[["$ git push origin main","#f4f4f5"],["> build ........ OK","#00ff9c"],["> 24 tests ..... PASSED","#00ff9c"],["> deploy ....... LIVE","#00ff9c"]].forEach(([txt, col], i) => {
+  const el = document.createElement("div"); el.textContent = txt; el.style.color = col; el.style.opacity = 0;
+  term.appendChild(el);
+  tl.set(el, {opacity:1}, 30.8 + i*1.1);
+});
+tl.fromTo("#term", {opacity:0}, {opacity:1,duration:.4}, 30.4);
+
+// S5
+tl.fromTo("#s5a", {scale:.5,opacity:0}, {scale:1,opacity:1,duration:.5,ease:"back.out(2)"}, 45.3);
+tl.fromTo("#s5b", {opacity:0,y:40}, {opacity:1,y:0,duration:.5}, 45.8);
+["p1","p2","p3"].forEach((id, i) => tl.fromTo("#"+id, {opacity:0,x:-80}, {opacity:1,x:0,duration:.5,ease:"power3.out"}, 48 + i*1.4));
+
+// S6
+tl.fromTo("#s6a", {opacity:0,y:-40}, {opacity:1,y:0,duration:.5}, 53.3);
+tl.fromTo("#s6b", {opacity:0,scale:.6}, {opacity:1,scale:1,duration:.6,ease:"back.out(1.7)"}, 53.7);
+tl.fromTo("#s6c", {opacity:0,scale:2}, {opacity:1,scale:1,duration:.6,ease:"power4.out"}, 54.4);
+tl.fromTo(["#s6d","#s6e"], {opacity:0}, {opacity:1,duration:.5}, 56.5);
+tl.fromTo("#fol", {scale:.5,opacity:0}, {scale:1,opacity:1,duration:.5,ease:"back.out(2)"}, 58);
+tl.to("#fol", {scale:1.08,duration:.4,repeat:3,yoyo:true,ease:"sine.inOut"}, 58.6);
+
+// Captions — Tenglish script; phrase timing spreads each scene's words evenly (retime after voiceover)
+const CAP = [
+ [0,3,"Meeru DevOps Engineer avvali anukuntunnara? Aithe munduga DevOps ante ento telusukovali!"],
+ [3,15,"Imagine cheyandi, oka developer application create chesadu. Kaani aa application server lo deploy chesinappudu errors vastunnayi. Development team ki, Operations team ki madhya coordination sarigga ledu."],
+ [15,30,"Ilaanti problems solve cheyadanike DevOps use chestaru! DevOps ante Development and Operations ane rendu concepts combination. Deeni main goal software ni fast ga, reliable ga develop chesi deploy cheyadam."],
+ [30,45,"Example ki, developer GitHub lo code push chesadu anukondi. CI/CD pipeline automatic ga code ni test chestundi, build chestundi, tarvata application ni deploy chestundi."],
+ [45,53,"Remember, DevOps ante kevalam tools nerchukovadam kaadu. Automation, collaboration, continuous improvement kuda chala important."],
+ [53,60,"Idi mana 100 Days of DevOps series lo Day 1! Day 2 lo DevOps Engineer daily em chestado telusukundam. Follow avvandi!"],
+];
+const caps = document.getElementById("caps");
+CAP.forEach(([a, b, text]) => {
+  const w = text.split(/\s+/), chunks = [];
+  for (let i = 0; i < w.length; i += 3) chunks.push(w.slice(i, i + 3).join(" "));
+  const dur = (b - a) / chunks.length;
+  chunks.forEach((c, i) => {
+    const el = document.createElement("div"); el.className = "cap"; el.textContent = c;
+    caps.appendChild(el);
+    tl.set(el, {opacity:1}, a + i*dur);
+    tl.set(el, {opacity:0}, a + (i+1)*dur - 0.02);
+  });
+});
+
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>
