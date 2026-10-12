@@ -5,6 +5,7 @@ import sys, json, re
 sys.path.insert(0, "../../tools")
 import align
 audio, wfile = sys.argv[1], sys.argv[2]
+speed = float(sys.argv[3]) if len(sys.argv) > 3 else 1.0
 x, sr = align.load(audio); dur = round(len(x) / sr, 2); segs = align.phrases(x, sr)
 sents = [l.strip() for l in open("script_lines.txt") if l.strip()]
 win = json.load(open(wfile)); assert len(win) == len(sents), (len(win), len(sents))
@@ -31,7 +32,13 @@ T = {
 }
 T = {k: round(v, 2) for k, v in T.items()}
 for k in ("n1","n2","n3","n4"): assert T[k] > 0
-out = {"dur": dur, "S": S, "T": T, "errs": [T["e1"], T["e2"], T["e3"], T["e4"]], "pings": [T["t2"], T["t3"]], "slam": T["day1"]}
+out = {"dur": dur, "speed": speed, "S": S, "T": T, "errs": [T["e1"], T["e2"], T["e3"], T["e4"]], "pings": [T["t2"], T["t3"]], "slam": T["day1"]}
 json.dump(out, open("cues.json", "w"), indent=1)
 open("anim/assets/cues.js", "w").write("window.CUE = " + json.dumps(out) + ";\n")
 print("dur", dur, "scenes", S); print(T)
+
+import re as _re
+_h = open("anim/index.html").read()
+_h = _re.sub(r'data-duration="[0-9.]+" data-width', 'data-duration="%s" data-width' % round(dur / speed, 2), _h)
+open("anim/index.html", "w").write(_h)
+print("output duration", round(dur / speed, 2))

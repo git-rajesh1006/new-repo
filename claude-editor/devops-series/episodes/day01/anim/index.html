@@ -33,7 +33,7 @@ html, body { margin:0; width:1080px; height:1920px; overflow:hidden; background:
 </style>
 </head>
 <body>
-<div id="root" data-composition-id="main" data-start="0" data-duration="69.72" data-width="1080" data-height="1920">
+<div id="root" data-composition-id="main" data-start="0" data-duration="55.78" data-width="1080" data-height="1920">
   <div id="grid"></div>
   <div id="top" class="mono">100 DAYS OF DEVOPS &nbsp;/&nbsp; DAY 01</div>
 
@@ -100,8 +100,18 @@ html, body { margin:0; width:1080px; height:1920px; overflow:hidden; background:
 </div>
 <script>
 // All timings come from assets/cues.js, generated from the real voiceover by ../build_cues.py
-const S = CUE.S, T = CUE.T, DUR = CUE.dur;
+const S = CUE.S, T = CUE.T, DUR = CUE.dur, SPEED = CUE.speed || 1;
 const tl = gsap.timeline({ paused: true });
+// Speed: positions and durations of everything added below are divided by SPEED (authored at natural voiceover speed).
+(function (k) {
+  if (k === 1) return;
+  const pos = (p) => (typeof p === "number" ? p / k : p);
+  const vars = (v) => { v = Object.assign({}, v); if (typeof v.duration === "number") v.duration = v.duration / k; return v; };
+  const to = tl.to.bind(tl), fromTo = tl.fromTo.bind(tl), set = tl.set.bind(tl);
+  tl.to = (t, v, p) => to(t, vars(v), pos(p));
+  tl.fromTo = (t, a, b, p) => fromTo(t, a, vars(b), pos(p));
+  tl.set = (t, v, p) => set(t, v, pos(p));
+})(SPEED);
 
 ["s1","s2","s3","s4","s5","s6"].forEach((id, i) => {
   tl.fromTo("#"+id, {opacity:0}, {opacity:1, duration:0.25}, S[i]);
