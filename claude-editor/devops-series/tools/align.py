@@ -115,7 +115,9 @@ def align_in_sentences(segs, sentences, windows):
                     if k == 0: c = 0.25 if d < .2 else 3.0
                     else:
                         c = 100 * ((cum[w]-cum[w-k]) / tot - d / D) ** 2
-                        if w-k > 0 and gap >= .25 and not toks[w-k-1].endswith((",", ":", "?", "!", ".")): c += .6
+                        if w-k > 0 and gap >= .25:
+                            if toks[w-k-1].endswith((",", ":", "?", "!", ".")): c -= .4          # pause at punctuation: good
+                            else: c += .6 + 8 * max(0, gap - .4)                               # long pause mid-phrase: bad
                     if p + c < dp[s][w]: dp[s][w] = p + c; bk[s][w] = k
         w, groups = W, []
         for s in range(S, 0, -1):

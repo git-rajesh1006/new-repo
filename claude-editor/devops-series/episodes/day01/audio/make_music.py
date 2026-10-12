@@ -1,7 +1,9 @@
 """Synthesize the Day 1 music bed + sound effects, timed to the voiceover scene boundaries.
 Usage: python make_music.py  ->  music.wav, sfx.wav (48 kHz stereo)"""
 import numpy as np, wave
-SR = 48000; DUR = 61.4; N = int(SR * DUR)
+import json, os
+CUE = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'cues.json')))
+SR = 48000; DUR = CUE['dur']; N = int(SR * DUR)
 rng = np.random.default_rng(7)
 t_all = np.arange(N) / SR
 def blank(): return np.zeros((2, N), np.float32)
@@ -75,25 +77,22 @@ def section(a, b, mode):
         for bar in range(int(d / (4*B)) + 1):
             root, tri = CH[bar % 4]; dd = min(4*B, d - bar*4*B)
             if dd > 0: put(music, pad([midi(n + 12) for n in tri], dd), a + bar*4*B, 0, 1.0 if mode != "calm" else 1.5)
-# intro rise 0-2.95
-put(music, noise_sweep(2.9, True), 0.0); put(music, pad([midi(45), midi(52), midi(57)], 2.95), 0, 0, 1.3)
-section(2.95, 13.5, "dark")
-section(13.5, 26.55, "drive")
-section(26.55, 37.8, "full")
-section(37.8, 48.55, "calm")
-section(48.55, 60.9, "full")
-# outro: final hit + tail
-put(music, np.pad(kick(.6), (0, 0)) * 1.1, 60.9); put(music, pluck(midi(81), 1.2) * 1.0, 60.9)
+# sections follow the scene boundaries in cues.json
+SB = CUE["S"]
+put(music, noise_sweep(max(1.0, SB[1] - .05), True), 0.0); put(music, pad([midi(45), midi(52), midi(57)], SB[1]), 0, 0, 1.3)
+for (a, b, mode) in ((SB[1], SB[2], "dark"), (SB[2], SB[3], "drive"), (SB[3], SB[4], "full"), (SB[4], SB[5], "calm"), (SB[5], DUR - .5, "full")):
+    section(a, b, mode)
+put(music, kick(.6) * 1.1, DUR - .5); put(music, pluck(midi(81), 1.2) * 1.0, DUR - .5)   # outro hit
 
 # --- SFX tied to visible events (kept few) ---
-for b in (2.95, 13.5, 26.55, 37.8, 48.55):                       # whoosh into each scene
+for b in SB[1:6]:                                                # whoosh into each scene
     put(sfx, noise_sweep(.55, True, 400, 6000), b - .45)
-put(sfx, impact() * .9, 13.5); put(sfx, impact() * .9, 26.55)     # solution + example hits
-for te in (9.3, 9.9, 11.0, 12.5):                                  # error buzzes
+put(sfx, impact() * .9, SB[2]); put(sfx, impact() * .9, SB[3])     # solution + example hits
+for te in CUE['errs']:                                  # error buzzes
     tb = tt(.16); put(sfx, np.sign(np.sin(2*np.pi*95*tb)) * np.exp(-tb*14) * .35, te, .0)
-for tp in (32.8, 36.9):                                            # tests passed / live pings
+for tp in CUE['pings']:                                            # tests passed / live pings
     put(sfx, (pluck(midi(84), .7) + pluck(midi(91), .7) * .8) * 1.2, tp, .2)
-put(sfx, impact(1.2) * .8, 50.6)                                   # "DAY 1" slam
+put(sfx, impact(1.2) * .8, CUE['slam'])                                   # "DAY 1" slam
 def w(name, x):
     x = np.clip(x, -1, 1); p = (x.T * 32767).astype("<i2")
     with wave.open(name, "wb") as f: f.setnchannels(2); f.setsampwidth(2); f.setframerate(SR); f.writeframes(p.tobytes())

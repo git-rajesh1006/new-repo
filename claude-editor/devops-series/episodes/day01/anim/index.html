@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=1080, height=1920" />
 <script src="assets/gsap.min.js"></script>
+<script src="assets/cues.js"></script>
 <style>
 @font-face { font-family: "HFMono"; src: url("assets/DejaVuSansMono-Bold.ttf"); font-weight: 700; }
 @font-face { font-family: "HFSans"; src: url("assets/DejaVuSans-Bold.ttf"); font-weight: 700; }
@@ -32,7 +33,7 @@ html, body { margin:0; width:1080px; height:1920px; overflow:hidden; background:
 </style>
 </head>
 <body>
-<div id="root" data-composition-id="main" data-start="0" data-duration="61.4" data-width="1080" data-height="1920">
+<div id="root" data-composition-id="main" data-start="0" data-duration="69.72" data-width="1080" data-height="1920">
   <div id="grid"></div>
   <div id="top" class="mono">100 DAYS OF DEVOPS &nbsp;/&nbsp; DAY 01</div>
 
@@ -98,8 +99,8 @@ html, body { margin:0; width:1080px; height:1920px; overflow:hidden; background:
   <div id="caps"></div>
 </div>
 <script>
-// Timings are mapped from the real voiceover (pauses in the audio). Retime here if the voiceover changes.
-const S = [0, 2.95, 13.5, 26.55, 37.8, 48.55, 61.4]; // scene boundaries (s)
+// All timings come from assets/cues.js, generated from the real voiceover by ../build_cues.py
+const S = CUE.S, T = CUE.T, DUR = CUE.dur;
 const tl = gsap.timeline({ paused: true });
 
 ["s1","s2","s3","s4","s5","s6"].forEach((id, i) => {
@@ -107,43 +108,43 @@ const tl = gsap.timeline({ paused: true });
   if (i < 5) tl.to("#"+id, {opacity:0, duration:0.25}, S[i+1]-0.25);
 });
 
-// S1 hook 0-2.95
+// S1 hook
 tl.fromTo("#s1a", {y:-60,opacity:0}, {y:0,opacity:1,duration:.4,ease:"power3.out"}, 0.1);
 tl.fromTo("#s1b", {scale:.6,opacity:0}, {scale:1,opacity:1,duration:.5,ease:"back.out(1.7)"}, 0.4);
 tl.fromTo("#lap", {opacity:0,y:60}, {opacity:1,y:0,duration:.5,ease:"power3.out"}, 0.7);
 ["$ git commit -m 'app'","function deploy() {","  run(app);","}"].forEach((l, i) => {
   const el = document.createElement("div"); el.textContent = l; el.style.opacity = 0;
   document.getElementById("code").appendChild(el);
-  tl.set(el, {opacity:1}, 1.0 + i*.4);
+  tl.set(el, {opacity:1}, 1.0 + i*.7);
 });
 
-// S2 problem 2.95-13.5
-tl.fromTo("#dev", {x:-200,opacity:0}, {x:0,opacity:1,duration:.6,ease:"power3.out"}, 3.1);
-tl.fromTo("#ops", {x:200,opacity:0}, {x:0,opacity:1,duration:.6,ease:"power3.out"}, 3.1);
-tl.fromTo("#s2t", {opacity:0}, {opacity:1,duration:.5}, 3.5);
-tl.fromTo("#app", {opacity:0,scale:.5}, {opacity:1,scale:1,duration:.4,ease:"back.out(2)"}, 3.8);
-tl.to("#app", {x:540,duration:1.6,ease:"power2.inOut"}, 6.9);          // "...deploy chesinappudu"
-tl.to("#app", {backgroundColor:"#ff4d4d",duration:.3}, 9.0);
-tl.to("#ops", {borderColor:"#ff4d4d",duration:.4}, 9.0);
-const ERR = [9.3, 9.9, 11.0, 12.5];                                    // "errors vastunnayi" ... "coordination sarigga ledu"
+// S2 problem
+tl.fromTo("#dev", {x:-200,opacity:0}, {x:0,opacity:1,duration:.6,ease:"power3.out"}, T.box);
+tl.fromTo("#ops", {x:200,opacity:0}, {x:0,opacity:1,duration:.6,ease:"power3.out"}, T.box);
+tl.fromTo("#s2t", {opacity:0}, {opacity:1,duration:.5}, T.s2t);
+tl.fromTo("#app", {opacity:0,scale:.5}, {opacity:1,scale:1,duration:.4,ease:"back.out(2)"}, T.appIn);
+tl.to("#app", {x:540,duration:1.6,ease:"power2.inOut"}, T.appMove);              // on "deploy chesinappudu"
+tl.to("#app", {backgroundColor:"#ff4d4d",duration:.3}, T.appRed);                // on "errors"
+tl.to("#ops", {borderColor:"#ff4d4d",duration:.4}, T.appRed);
 ["e1","e2","e3","e4"].forEach((id, i) => {
-  tl.fromTo("#"+id, {opacity:0,scale:.3}, {opacity:1,scale:1,duration:.3,ease:"back.out(3)"}, ERR[i]);
-  tl.to("#"+id, {x:"+=14",duration:.06,repeat:5,yoyo:true,ease:"none"}, ERR[i]+.3);
+  const t = CUE.errs[i];
+  tl.fromTo("#"+id, {opacity:0,scale:.3}, {opacity:1,scale:1,duration:.3,ease:"back.out(3)"}, t);
+  tl.to("#"+id, {x:"+=14",duration:.06,repeat:5,yoyo:true,ease:"none"}, t+.3);
 });
 
-// S3 solution 13.5-26.55
-tl.fromTo("#d3", {x:-300,opacity:0}, {x:0,opacity:1,duration:.5}, 13.8);
-tl.fromTo("#o3", {x:300,opacity:0}, {x:0,opacity:1,duration:.5}, 13.8);
-tl.to("#d3", {x:125,duration:1,ease:"power3.inOut"}, 15.8);
-tl.to("#o3", {x:-125,duration:1,ease:"power3.inOut"}, 15.8);
-tl.to(["#d3","#o3"], {borderColor:"#00ff9c",duration:.3}, 16.8);
-tl.to("#s3a", {opacity:1,duration:.4}, 17.0);
-tl.fromTo("#s3b", {opacity:0,y:30}, {opacity:1,y:0,duration:.5}, 19.0);
-tl.fromTo("#s3c", {opacity:0,y:30}, {opacity:1,y:0,duration:.5}, 20.2);
-tl.fromTo("#c1", {opacity:0,scale:.8}, {opacity:1,scale:1,duration:.5,ease:"back.out(1.7)"}, 23.4);
+// S3 solution
+tl.fromTo("#d3", {x:-300,opacity:0}, {x:0,opacity:1,duration:.5}, T.boxes3);
+tl.fromTo("#o3", {x:300,opacity:0}, {x:0,opacity:1,duration:.5}, T.boxes3);
+tl.to("#d3", {x:125,duration:1,ease:"power3.inOut"}, T.merge);
+tl.to("#o3", {x:-125,duration:1,ease:"power3.inOut"}, T.merge);
+tl.to(["#d3","#o3"], {borderColor:"#00ff9c",duration:.3}, T.merge + 1);
+tl.to("#s3a", {opacity:1,duration:.4}, T.devops);
+tl.fromTo("#s3b", {opacity:0,y:30}, {opacity:1,y:0,duration:.5}, T.collab);
+tl.fromTo("#s3c", {opacity:0,y:30}, {opacity:1,y:0,duration:.5}, T.auto);
+tl.fromTo("#c1", {opacity:0,scale:.8}, {opacity:1,scale:1,duration:.5,ease:"back.out(1.7)"}, T.goal);
 
-// S4 example 26.55-37.8
-const NODE = [27.7, 29.9, 32.3, 36.4], TERM = [28.3, 30.4, 32.8, 36.9];
+// S4 example
+const NODE = [T.n1, T.n2, T.n3, T.n4], TERM = [T.t0, T.t1, T.t2, T.t3];
 ["n1","n2","n3","n4"].forEach((id, i) => {
   tl.fromTo("#"+id, {x:-120,opacity:0}, {x:0,opacity:1,duration:.4,ease:"power3.out"}, NODE[i]);
   tl.to("#"+id, {borderColor:"#00ff9c",duration:.3}, NODE[i]+.5);
@@ -154,24 +155,24 @@ const term = document.getElementById("term");
   term.appendChild(el);
   tl.set(el, {opacity:1}, TERM[i]);
 });
-tl.fromTo("#term", {opacity:0}, {opacity:1,duration:.4}, 26.9);
+tl.fromTo("#term", {opacity:0}, {opacity:1,duration:.4}, T.term);
 
-// S5 takeaway 37.8-48.55
-tl.fromTo("#s5a", {scale:.5,opacity:0}, {scale:1,opacity:1,duration:.5,ease:"back.out(2)"}, 38.3);
-tl.fromTo("#s5b", {opacity:0,y:40}, {opacity:1,y:0,duration:.5}, 38.9);
-[42.1, 43.2, 44.3].forEach((t, i) => tl.fromTo("#p"+(i+1), {opacity:0,x:-80}, {opacity:1,x:0,duration:.5,ease:"power3.out"}, t));
+// S5 takeaway
+tl.fromTo("#s5a", {scale:.5,opacity:0}, {scale:1,opacity:1,duration:.5,ease:"back.out(2)"}, T.tools);
+tl.fromTo("#s5b", {opacity:0,y:40}, {opacity:1,y:0,duration:.5}, T.devops5);
+[T.p1, T.p2, T.p3].forEach((t, i) => tl.fromTo("#p"+(i+1), {opacity:0,x:-80}, {opacity:1,x:0,duration:.5,ease:"power3.out"}, t));
 
-// S6 CTA 48.55-61.4
-tl.fromTo("#s6a", {opacity:0,y:-40}, {opacity:1,y:0,duration:.5}, 48.9);
-tl.fromTo("#s6b", {opacity:0,scale:.6}, {opacity:1,scale:1,duration:.6,ease:"back.out(1.7)"}, 49.3);
-tl.fromTo("#s6c", {opacity:0,scale:2}, {opacity:1,scale:1,duration:.6,ease:"power4.out"}, 50.6);
-tl.fromTo("#s6d", {opacity:0}, {opacity:1,duration:.5}, 53.4);
-tl.fromTo("#s6e", {opacity:0}, {opacity:1,duration:.5}, 55.7);
-tl.fromTo("#fol", {scale:.5,opacity:0}, {scale:1,opacity:1,duration:.5,ease:"back.out(2)"}, 58.6);
-tl.to("#fol", {scale:1.08,duration:.4,repeat:5,yoyo:true,ease:"sine.inOut"}, 59.2);
+// S6 CTA
+tl.fromTo("#s6a", {opacity:0,y:-40}, {opacity:1,y:0,duration:.5}, T.c1);
+tl.fromTo("#s6b", {opacity:0,scale:.6}, {opacity:1,scale:1,duration:.6,ease:"back.out(1.7)"}, T.c2);
+tl.fromTo("#s6c", {opacity:0,scale:2}, {opacity:1,scale:1,duration:.6,ease:"power4.out"}, T.day1);   // on "Day 1!"
+tl.fromTo("#s6d", {opacity:0}, {opacity:1,duration:.5}, T.next);
+tl.fromTo("#s6e", {opacity:0}, {opacity:1,duration:.5}, T.nextEng);
+tl.fromTo("#fol", {scale:.5,opacity:0}, {scale:1,opacity:1,duration:.5,ease:"back.out(2)"}, T.follow);
+tl.to("#fol", {scale:1.08,duration:.4,repeat:Math.max(1, Math.floor((DUR - T.follow - .6) / .4) - 1),yoyo:true,ease:"sine.inOut"}, T.follow + .6);
 
-// Captions — aligned to the voiceover phrases (tools/align.py -> captions.json)
-const CAPS = [[0.12, 0.926, "DevOps ante enti?"], [0.946, 1.752, "Aithe munduga idi"], [1.772, 2.86, "telusukundam!"], [3.33, 3.97, "Imagine cheyandi,"], [3.99, 4.62, "oka developer"], [4.64, 5.77, "application create chesadu."], [6.25, 7.42, "Kaani aa application"], [7.44, 8.1, "server lo deploy"], [8.12, 9.88, "chesinappudu errors vastunnayi."], [9.96, 10.695, "Development team ki,"], [10.715, 11.56, "Operations team ki"], [11.58, 12.55, "madhya coordination"], [12.57, 13.66, "sarigga ledu."], [14.1, 14.88, "Ilaanti"], [14.9, 15.22, "problems"], [15.24, 16.53, "solve cheyadanike DevOps"], [16.55, 18.12, "use chestaru!"], [18.81, 19.572, "DevOps ante Development"], [19.592, 20.158, "and Operations ane"], [20.178, 21.36, "rendu concepts combination."], [21.96, 22.706, "Deeni main goal,"], [22.726, 23.37, "software ni"], [23.39, 24.095, "fast ga, reliable"], [24.115, 24.93, "ga develop"], [24.95, 25.6, "chesi"], [25.62, 26.65, "deploy cheyadam."], [26.87, 27.718, "Example ki, developer"], [27.738, 28.24, "GitHub lo"], [28.26, 28.63, "code push"], [28.65, 28.99, "chesadu"], [29.01, 29.9, "anukondi."], [29.92, 31.14, "CI/CD pipeline"], [31.16, 31.64, "automatic"], [31.66, 32.38, "ga code"], [32.4, 33.56, "ni test chestundi,"], [34.2, 35.402, "build chestundi, tarvata"], [35.422, 36.22, "application"], [36.24, 36.47, "ni"], [36.49, 37.78, "deploy chestundi."], [38.07, 39.355, "Remember, DevOps ante"], [39.375, 40.19, "kevalam tools"], [40.21, 41.1, "nerchukovadam"], [41.12, 41.77, "kaadu."], [42.11, 43.23, "Automation,"], [43.25, 44.23, "collaboration,"], [44.25, 44.94, "continuous"], [45.35, 46.21, "improvement"], [46.23, 47.63, "kuda chala"], [47.65, 48.77, "important."], [48.79, 49.65, "Idi"], [49.67, 50.526, "100 Days of"], [50.546, 51.401, "DevOps lo Day"], [51.421, 51.9, "1!"], [51.92, 53.1, "Repu"], [53.48, 54.77, "Day 2 lo,"], [54.79, 55.68, "DevOps"], [55.7, 57.95, "Engineer em chestaaro"], [57.97, 58.59, "chuddam."], [58.61, 59.76, "Follow avvandi!"]];
+// Captions — the exact text of voiceover.md, aligned to the audio (../build_cues.py -> captions.json)
+const CAPS = [[0.2, 1.93, "DevOps ante enti?"], [2.52, 3.509, "Aithe munduga idi"], [3.529, 4.77, "telusukundam!"], [4.79, 6.43, "Imagine cheyandi,"], [6.45, 8.363, "oka developer application"], [8.383, 9.75, "create chesadu."], [10.41, 10.94, "Kaani"], [10.96, 12.221, "aa application server"], [12.241, 13.685, "lo deploy chesinappudu"], [13.705, 15.02, "errors vastunnayi."], [15.65, 16.43, "Development"], [16.45, 17.21, "team ki,"], [17.23, 18.325, "Operations team ki"], [18.345, 19.998, "madhya coordination sarigga"], [20.018, 20.79, "ledu."], [20.85, 22.246, "Ilaanti problems solve"], [22.266, 23.662, "cheyadanike DevOps use"], [23.682, 24.79, "chestaru!"], [24.84, 26.587, "DevOps ante Development"], [26.607, 27.913, "and Operations ane"], [27.933, 30.06, "rendu concepts combination."], [30.08, 31.167, "Deeni main goal,"], [31.187, 32.01, "software"], [32.03, 32.838, "ni fast ga,"], [32.858, 33.71, "reliable"], [33.73, 34.81, "ga develop"], [34.83, 36.49, "chesi deploy cheyadam."], [36.54, 37.66, "Example ki,"], [37.68, 38.749, "developer GitHub lo"], [38.769, 39.15, "code"], [39.17, 41.09, "push chesadu anukondi."], [41.12, 43.3, "CI/CD pipeline automatic"], [43.32, 44.1, "ga code ni"], [44.12, 45.21, "test chestundi,"], [45.23, 46.43, "build chestundi,"], [46.45, 47.808, "tarvata application ni"], [47.828, 49.09, "deploy chestundi."], [49.13, 50.31, "Remember,"], [50.33, 51.943, "DevOps ante kevalam"], [51.963, 54.23, "tools nerchukovadam kaadu."], [54.85, 55.87, "Automation,"], [55.89, 56.66, "collaboration,"], [56.68, 58.004, "continuous improvement kuda"], [58.024, 59.17, "chala important."], [59.19, 60.393, "Idi 100 Days"], [60.413, 61.371, "of DevOps lo"], [61.391, 62.28, "Day 1!"], [62.3, 63.184, "Repu Day 2"], [63.204, 63.68, "lo,"], [63.7, 65.12, "DevOps Engineer em"], [65.14, 66.74, "chestaaro chuddam."], [66.76, 69.79, "Follow avvandi!"]];
 const caps = document.getElementById("caps");
 CAPS.forEach(([a, b, text]) => {
   const el = document.createElement("div"); el.className = "cap"; el.textContent = text;
