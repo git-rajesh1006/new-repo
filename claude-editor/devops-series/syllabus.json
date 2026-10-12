@@ -1,0 +1,530 @@
+{
+ "reel_format": [
+  {
+   "name": "Hook",
+   "start": 0,
+   "end": 3,
+   "note": "Question, surprising fact or common problem"
+  },
+  {
+   "name": "Explain",
+   "start": 3,
+   "end": 15,
+   "note": "Simple definition in everyday language"
+  },
+  {
+   "name": "Demonstrate",
+   "start": 15,
+   "end": 40,
+   "note": "Terminal command, diagram, tool or real-world example"
+  },
+  {
+   "name": "Recap + CTA",
+   "start": 40,
+   "end": 60,
+   "note": "Summarize and invite viewers to follow for the next day"
+  }
+ ],
+ "days": [
+  {
+   "day": 1,
+   "phase": "Phase 1 — DevOps fundamentals",
+   "title": "What is DevOps? Explained with a real-world example"
+  },
+  {
+   "day": 2,
+   "phase": "Phase 1 — DevOps fundamentals",
+   "title": "DevOps engineer: roles and responsibilities"
+  },
+  {
+   "day": 3,
+   "phase": "Phase 1 — DevOps fundamentals",
+   "title": "DevOps lifecycle: Plan, Code, Build, Test, Release, Deploy, Operate, Monitor"
+  },
+  {
+   "day": 4,
+   "phase": "Phase 1 — DevOps fundamentals",
+   "title": "Traditional IT vs DevOps"
+  },
+  {
+   "day": 5,
+   "phase": "Phase 1 — DevOps fundamentals",
+   "title": "What is Agile and how does it connect to DevOps?"
+  },
+  {
+   "day": 6,
+   "phase": "Phase 1 — DevOps fundamentals",
+   "title": "SDLC explained in 60 seconds"
+  },
+  {
+   "day": 7,
+   "phase": "Phase 1 — DevOps fundamentals",
+   "title": "CI vs CD vs Continuous Deployment"
+  },
+  {
+   "day": 8,
+   "phase": "Phase 1 — DevOps fundamentals",
+   "title": "DevOps tools roadmap for beginners"
+  },
+  {
+   "day": 9,
+   "phase": "Phase 1 — DevOps fundamentals",
+   "title": "DevOps engineer skills and career path"
+  },
+  {
+   "day": 10,
+   "phase": "Phase 1 — DevOps fundamentals",
+   "title": "Build your first DevOps learning roadmap"
+  },
+  {
+   "day": 11,
+   "phase": "Phase 2 — Linux and shell scripting",
+   "title": "What is Linux and why DevOps uses it"
+  },
+  {
+   "day": 12,
+   "phase": "Phase 2 — Linux and shell scripting",
+   "title": "Install Linux using a virtual machine or WSL"
+  },
+  {
+   "day": 13,
+   "phase": "Phase 2 — Linux and shell scripting",
+   "title": "Essential Linux commands: pwd, ls, cd"
+  },
+  {
+   "day": 14,
+   "phase": "Phase 2 — Linux and shell scripting",
+   "title": "File operations: touch, cp, mv, rm"
+  },
+  {
+   "day": 15,
+   "phase": "Phase 2 — Linux and shell scripting",
+   "title": "File permissions: chmod and chown"
+  },
+  {
+   "day": 16,
+   "phase": "Phase 2 — Linux and shell scripting",
+   "title": "Users, groups and sudo"
+  },
+  {
+   "day": 17,
+   "phase": "Phase 2 — Linux and shell scripting",
+   "title": "Processes: ps, top and kill"
+  },
+  {
+   "day": 18,
+   "phase": "Phase 2 — Linux and shell scripting",
+   "title": "Networking commands: curl, ping, ss"
+  },
+  {
+   "day": 19,
+   "phase": "Phase 2 — Linux and shell scripting",
+   "title": "Bash scripting: variables, conditions and loops"
+  },
+  {
+   "day": 20,
+   "phase": "Phase 2 — Linux and shell scripting",
+   "title": "Automate a backup with a Bash script"
+  },
+  {
+   "day": 21,
+   "phase": "Phase 3 — Git and GitHub",
+   "title": "What is Git and why do developers need it?"
+  },
+  {
+   "day": 22,
+   "phase": "Phase 3 — Git and GitHub",
+   "title": "Git installation and configuration"
+  },
+  {
+   "day": 23,
+   "phase": "Phase 3 — Git and GitHub",
+   "title": "git init, git add and git commit"
+  },
+  {
+   "day": 24,
+   "phase": "Phase 3 — Git and GitHub",
+   "title": "Push your first project to GitHub"
+  },
+  {
+   "day": 25,
+   "phase": "Phase 3 — Git and GitHub",
+   "title": "Git branches and merging"
+  },
+  {
+   "day": 26,
+   "phase": "Phase 3 — Git and GitHub",
+   "title": "Pull requests and code reviews"
+  },
+  {
+   "day": 27,
+   "phase": "Phase 3 — Git and GitHub",
+   "title": "Resolve Git merge conflicts"
+  },
+  {
+   "day": 28,
+   "phase": "Phase 3 — Git and GitHub",
+   "title": "Git workflow used by real teams"
+  },
+  {
+   "day": 29,
+   "phase": "Phase 4 — CI/CD and Jenkins",
+   "title": "What is CI/CD?"
+  },
+  {
+   "day": 30,
+   "phase": "Phase 4 — CI/CD and Jenkins",
+   "title": "How a CI/CD pipeline works"
+  },
+  {
+   "day": 31,
+   "phase": "Phase 4 — CI/CD and Jenkins",
+   "title": "What is Jenkins?"
+  },
+  {
+   "day": 32,
+   "phase": "Phase 4 — CI/CD and Jenkins",
+   "title": "Install Jenkins and explore its dashboard"
+  },
+  {
+   "day": 33,
+   "phase": "Phase 4 — CI/CD and Jenkins",
+   "title": "Create your first Jenkins job"
+  },
+  {
+   "day": 34,
+   "phase": "Phase 4 — CI/CD and Jenkins",
+   "title": "Jenkins pipelines and Jenkinsfile"
+  },
+  {
+   "day": 35,
+   "phase": "Phase 4 — CI/CD and Jenkins",
+   "title": "Build and test code automatically"
+  },
+  {
+   "day": 36,
+   "phase": "Phase 4 — CI/CD and Jenkins",
+   "title": "Webhooks: trigger builds on every Git push"
+  },
+  {
+   "day": 37,
+   "phase": "Phase 4 — CI/CD and Jenkins",
+   "title": "Jenkins credentials and secrets"
+  },
+  {
+   "day": 38,
+   "phase": "Phase 4 — CI/CD and Jenkins",
+   "title": "Build a GitHub-to-Jenkins pipeline"
+  },
+  {
+   "day": 39,
+   "phase": "Phase 5 — Docker and containers",
+   "title": "What is Docker and why use containers?"
+  },
+  {
+   "day": 40,
+   "phase": "Phase 5 — Docker and containers",
+   "title": "Containers vs virtual machines"
+  },
+  {
+   "day": 41,
+   "phase": "Phase 5 — Docker and containers",
+   "title": "Docker architecture explained"
+  },
+  {
+   "day": 42,
+   "phase": "Phase 5 — Docker and containers",
+   "title": "Install Docker and run your first container"
+  },
+  {
+   "day": 43,
+   "phase": "Phase 5 — Docker and containers",
+   "title": "Docker images vs containers"
+  },
+  {
+   "day": 44,
+   "phase": "Phase 5 — Docker and containers",
+   "title": "Write your first Dockerfile"
+  },
+  {
+   "day": 45,
+   "phase": "Phase 5 — Docker and containers",
+   "title": "Docker volumes and persistent data"
+  },
+  {
+   "day": 46,
+   "phase": "Phase 5 — Docker and containers",
+   "title": "Docker networks"
+  },
+  {
+   "day": 47,
+   "phase": "Phase 5 — Docker and containers",
+   "title": "Docker Compose for multi-container apps"
+  },
+  {
+   "day": 48,
+   "phase": "Phase 5 — Docker and containers",
+   "title": "Build and publish an image to a container registry"
+  },
+  {
+   "day": 49,
+   "phase": "Phase 6 — Cloud and AWS",
+   "title": "What is cloud computing?"
+  },
+  {
+   "day": 50,
+   "phase": "Phase 6 — Cloud and AWS",
+   "title": "IaaS vs PaaS vs SaaS"
+  },
+  {
+   "day": 51,
+   "phase": "Phase 6 — Cloud and AWS",
+   "title": "AWS global infrastructure: Regions and Availability Zones"
+  },
+  {
+   "day": 52,
+   "phase": "Phase 6 — Cloud and AWS",
+   "title": "IAM users, roles and policies"
+  },
+  {
+   "day": 53,
+   "phase": "Phase 6 — Cloud and AWS",
+   "title": "EC2: launch a virtual server"
+  },
+  {
+   "day": 54,
+   "phase": "Phase 6 — Cloud and AWS",
+   "title": "S3: cloud object storage"
+  },
+  {
+   "day": 55,
+   "phase": "Phase 6 — Cloud and AWS",
+   "title": "VPC, subnets and security groups"
+  },
+  {
+   "day": 56,
+   "phase": "Phase 6 — Cloud and AWS",
+   "title": "Load balancers and Auto Scaling"
+  },
+  {
+   "day": 57,
+   "phase": "Phase 6 — Cloud and AWS",
+   "title": "Route 53, DNS and domain routing"
+  },
+  {
+   "day": 58,
+   "phase": "Phase 6 — Cloud and AWS",
+   "title": "Deploy a web application on AWS"
+  },
+  {
+   "day": 59,
+   "phase": "Phase 7 — Kubernetes",
+   "title": "What is Kubernetes?"
+  },
+  {
+   "day": 60,
+   "phase": "Phase 7 — Kubernetes",
+   "title": "Docker vs Kubernetes"
+  },
+  {
+   "day": 61,
+   "phase": "Phase 7 — Kubernetes",
+   "title": "Kubernetes architecture: control plane and worker nodes"
+  },
+  {
+   "day": 62,
+   "phase": "Phase 7 — Kubernetes",
+   "title": "Pods and containers"
+  },
+  {
+   "day": 63,
+   "phase": "Phase 7 — Kubernetes",
+   "title": "Deployments and ReplicaSets"
+  },
+  {
+   "day": 64,
+   "phase": "Phase 7 — Kubernetes",
+   "title": "Services: ClusterIP, NodePort and LoadBalancer"
+  },
+  {
+   "day": 65,
+   "phase": "Phase 7 — Kubernetes",
+   "title": "ConfigMaps and Secrets"
+  },
+  {
+   "day": 66,
+   "phase": "Phase 7 — Kubernetes",
+   "title": "Namespaces and resource limits"
+  },
+  {
+   "day": 67,
+   "phase": "Phase 7 — Kubernetes",
+   "title": "Persistent Volumes and Persistent Volume Claims"
+  },
+  {
+   "day": 68,
+   "phase": "Phase 7 — Kubernetes",
+   "title": "Liveness, readiness and startup probes"
+  },
+  {
+   "day": 69,
+   "phase": "Phase 7 — Kubernetes",
+   "title": "Rolling updates and rollbacks"
+  },
+  {
+   "day": 70,
+   "phase": "Phase 7 — Kubernetes",
+   "title": "Deploy a complete application to Kubernetes"
+  },
+  {
+   "day": 71,
+   "phase": "Phase 8 — Infrastructure as Code",
+   "title": "What is Infrastructure as Code (IaC)?"
+  },
+  {
+   "day": 72,
+   "phase": "Phase 8 — Infrastructure as Code",
+   "title": "Terraform vs Ansible"
+  },
+  {
+   "day": 73,
+   "phase": "Phase 8 — Infrastructure as Code",
+   "title": "Terraform installation and providers"
+  },
+  {
+   "day": 74,
+   "phase": "Phase 8 — Infrastructure as Code",
+   "title": "Resources, variables and outputs"
+  },
+  {
+   "day": 75,
+   "phase": "Phase 8 — Infrastructure as Code",
+   "title": "terraform init, plan and apply"
+  },
+  {
+   "day": 76,
+   "phase": "Phase 8 — Infrastructure as Code",
+   "title": "Terraform state and remote backends"
+  },
+  {
+   "day": 77,
+   "phase": "Phase 8 — Infrastructure as Code",
+   "title": "Terraform modules and reusable code"
+  },
+  {
+   "day": 78,
+   "phase": "Phase 8 — Infrastructure as Code",
+   "title": "Provision AWS infrastructure with Terraform"
+  },
+  {
+   "day": 79,
+   "phase": "Phase 9 — Configuration management",
+   "title": "What is Ansible?"
+  },
+  {
+   "day": 80,
+   "phase": "Phase 9 — Configuration management",
+   "title": "Ansible inventory and ad hoc commands"
+  },
+  {
+   "day": 81,
+   "phase": "Phase 9 — Configuration management",
+   "title": "Playbooks, tasks and modules"
+  },
+  {
+   "day": 82,
+   "phase": "Phase 9 — Configuration management",
+   "title": "Roles, variables and templates"
+  },
+  {
+   "day": 83,
+   "phase": "Phase 9 — Configuration management",
+   "title": "Automate server setup using Ansible"
+  },
+  {
+   "day": 84,
+   "phase": "Phase 9 — Configuration management",
+   "title": "Terraform + Ansible in one workflow"
+  },
+  {
+   "day": 85,
+   "phase": "Phase 10 — Monitoring and observability",
+   "title": "Monitoring vs logging vs observability"
+  },
+  {
+   "day": 86,
+   "phase": "Phase 10 — Monitoring and observability",
+   "title": "Prometheus architecture and metrics"
+  },
+  {
+   "day": 87,
+   "phase": "Phase 10 — Monitoring and observability",
+   "title": "Grafana dashboards and visualizations"
+  },
+  {
+   "day": 88,
+   "phase": "Phase 10 — Monitoring and observability",
+   "title": "Centralized logging with the ELK/Elastic Stack"
+  },
+  {
+   "day": 89,
+   "phase": "Phase 10 — Monitoring and observability",
+   "title": "Alerts, SLI, SLO and SLA"
+  },
+  {
+   "day": 90,
+   "phase": "Phase 10 — Monitoring and observability",
+   "title": "Monitor an application and configure alerts"
+  },
+  {
+   "day": 91,
+   "phase": "Phase 11 — DevSecOps and production skills",
+   "title": "What is DevSecOps?"
+  },
+  {
+   "day": 92,
+   "phase": "Phase 11 — DevSecOps and production skills",
+   "title": "SAST, DAST and dependency scanning"
+  },
+  {
+   "day": 93,
+   "phase": "Phase 11 — DevSecOps and production skills",
+   "title": "Container image scanning and vulnerability management"
+  },
+  {
+   "day": 94,
+   "phase": "Phase 11 — DevSecOps and production skills",
+   "title": "Secrets management and least privilege"
+  },
+  {
+   "day": 95,
+   "phase": "Phase 11 — DevSecOps and production skills",
+   "title": "Blue-green vs canary deployments"
+  },
+  {
+   "day": 96,
+   "phase": "Phase 11 — DevSecOps and production skills",
+   "title": "Troubleshooting failed deployments and rollbacks"
+  },
+  {
+   "day": 97,
+   "phase": "Phase 12 — Real-world projects and career",
+   "title": "Build an end-to-end CI/CD pipeline"
+  },
+  {
+   "day": 98,
+   "phase": "Phase 12 — Real-world projects and career",
+   "title": "Deploy a containerized application to Kubernetes on AWS"
+  },
+  {
+   "day": 99,
+   "phase": "Phase 12 — Real-world projects and career",
+   "title": "DevOps interview questions and scenario-based answers"
+  },
+  {
+   "day": 100,
+   "phase": "Phase 12 — Real-world projects and career",
+   "title": "Build your DevOps portfolio and resume project"
+  }
+ ]
+}
