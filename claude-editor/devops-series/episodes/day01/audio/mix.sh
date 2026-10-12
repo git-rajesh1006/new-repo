@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Voice modulation + music/SFX mix. Usage: ./mix.sh <voiceover> <video_in> <video_out> <dur> [pitch]
 set -euo pipefail
+cd "$(dirname "$0")/.."   # run from the episode folder so intermediate files land there
 VO="$1"; VIN="$2"; VOUT="$3"; DUR="$4"; PITCH="${5:-0.92}"; SPEED="${6:-1.0}"; ODUR=$(awk "BEGIN{printf \"%.2f\", $DUR/$SPEED}")
 # 1) Modulated voice: pitch down ~1.4 semitones with formant shift, warmth + presence EQ,
 #    gentle compression, subtle doubler for a fuller "narrator" tone. Duration is unchanged.
