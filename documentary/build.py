@@ -24,7 +24,7 @@ def build_voice():
 def voice_track(pieces):
     n = int(TOTAL * SR); v = np.zeros(n, np.float32)
     for p in pieces:
-        a = np.interp(np.arange(int(p["dur"] * SR)) / SR, np.arange(len(p["au"])) / narration.SR, p["au"]).astype(np.float32)
+        a = np.interp(np.arange(int(p["dur"] * SR)) / SR, np.arange(len(p["au"])) / p.get("sr", narration.SR), p["au"]).astype(np.float32)
         i = int(p["start"] * SR); j = min(n, i + len(a)); v[i:j] += a[:j - i]
     return v / max(1e-6, np.abs(v).max()) * 0.95
 
@@ -170,14 +170,16 @@ CAPS = []   # (start, end, text)
 
 def build_captions(pieces):
     for p in pieces:
-        words = p["text"].split(); chunks = []; cur = []
-        for w_ in words:
-            cur.append(w_)
-            if len(cur) >= 7 or (w_[-1] in ".?!:" and len(cur) >= 3) or (w_[-1] == "," and len(cur) >= 5): chunks.append(cur); cur = []
-        if cur: chunks.append(cur)
-        total = sum(len(" ".join(c_)) for c_ in chunks); t0 = p["start"]
-        for c_ in chunks:
-            d = p["dur"] * len(" ".join(c_)) / total; CAPS.append((t0, t0 + d, " ".join(c_))); t0 += d
+        sents = p.get("sents") or [(p["text"], 0.0, p["dur"])]
+        for stext, off, sdur in sents:
+            words = stext.split(); chunks = []; cur = []
+            for w_ in words:
+                cur.append(w_)
+                if len(cur) >= 7 or (w_[-1] in ".?!:" and len(cur) >= 3) or (w_[-1] == "," and len(cur) >= 5): chunks.append(cur); cur = []
+            if cur: chunks.append(cur)
+            total = sum(len(" ".join(c_)) for c_ in chunks); t0 = p["start"] + off
+            for c_ in chunks:
+                d = sdur * len(" ".join(c_)) / total; CAPS.append((t0, t0 + d, " ".join(c_))); t0 += d
 
 def srt_time(x): ms = int(round(x * 1000)); return "%02d:%02d:%02d,%03d" % (ms // 3600000, ms // 60000 % 60, ms // 1000 % 60, ms % 1000)
 def write_srt(path):
@@ -234,8 +236,12 @@ VIG = np.clip(1.06 - 0.34 * (((xx - W / 2) / (W / 2)) ** 2 + ((yy - H / 2) / (H 
 
 if __name__ == "__main__":
     out = sys.argv[1]
-    pieces = build_voice(); build_captions(pieces)
-    for p in pieces: print("%6.1f +%5.2fs rate=%3d  %s" % (p["start"], p["dur"], p["rate"], p["text"][:60]))
+    if "--voice" in sys.argv:
+        import voice_import
+        pieces, _ = voice_import.pieces_from(sys.argv[sys.argv.index("--voice") + 1])
+    else: pieces = build_voice()
+    build_captions(pieces)
+    for p in pieces: print("%6.1f +%5.2fs rate=%3d  %s" % (p["start"], p["dur"], p.get("rate", 0), p["text"][:60]))
     mix, v, m = mix_audio(pieces); wavp = out + ".wav"; write_wav(wavp, mix); write_srt(out.replace(".mp4", ".srt"))
     print("audio peak", np.abs(mix).max())
     if "--audio-only" in sys.argv: sys.exit()
