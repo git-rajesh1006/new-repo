@@ -6,7 +6,7 @@ CREAM = (246, 243, 239)
 
 def app_tile(c, cx, cy, kind, k=1.0, size=146):
     s = size * eback(k, 1.2) if k < 1 else size
-    if s < 4: return
+    if s < 14: return
     def dr(d, ox, oy):
         d.rounded_rectangle([(cx - s / 2 - ox) * SS, (cy - s / 2 - oy) * SS, (cx + s / 2 - ox) * SS, (cy + s / 2 - oy) * SS], radius=s * .24 * SS, fill=(255, 255, 255, 255), outline=(232, 228, 224, 255), width=2 * SS)
     c.layer(lambda d, ox, oy: d.rounded_rectangle([(cx - s / 2 - ox + 4) * SS, (cy - s / 2 - oy + 14) * SS, (cx + s / 2 - ox - 4) * SS, (cy + s / 2 - oy + 14) * SS], radius=s * .24 * SS, fill=(120, 90, 80, 70)), (cx - s / 2 - 40, cy - s / 2 - 30, cx + s / 2 + 40, cy + s / 2 + 60), alpha=.8, blur=14)

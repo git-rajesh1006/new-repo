@@ -11,7 +11,13 @@ import rlib
 from rlib import W, H, FPS, SS, clamp, font, TERRA, INK
 import scenes, script_te
 
-SR = 44100; TOTAL = script_te.TOTAL
+SR = 44100; TOTAL = script_te.TOTAL; TOTALX = TOTAL
+SCHED = [(a, e, a, e, fn) for a, e, fn in scenes.SCENES]   # (new_start, new_end, orig_start, orig_end, fn); stretched when voice is longer
+def M(t):
+    """Map an original-timeline time to the (possibly stretched) new timeline."""
+    for ns, ne, os_, oe, fn in SCHED:
+        if os_ <= t <= oe: return ns + (t - os_) * (ne - ns) / (oe - os_)
+    return SCHED[-1][1]
 WORDS = []        # (start, end, word, clip_index)
 CLIPSPAN = []     # (start, end) actual speech span per clip
 
@@ -54,18 +60,20 @@ def caption_img(T, grp, dark, orange):
     return lay.resize((W, 130), Image.LANCZOS)
 
 def scene_at(T):
-    for a, b, fn in scenes.SCENES:
-        if a <= T < b: return a, b, fn
-    return scenes.SCENES[-1]
+    """-> (new_start, new_end, fn, orig_start, orig_end)"""
+    for s in SCHED:
+        if s[0] <= T < s[1]: return s
+    return SCHED[-1]
 
 GROUPS = []
 def render(frame):
     T = frame / FPS
-    a, b, fn = scene_at(T)
-    c = fn(T - a, T); img = c.result()
+    a, b, os_, oe, fn = scene_at(T)
+    tl = (T - a) * (oe - os_) / (b - a)
+    c = fn(tl, T); img = c.result()
     if T - a < .18 and a > 0:   # quick cross-fade on scene change
-        pa, pb, pf = scene_at(a - .001); img = Image.blend(pf(T - pa, T).result(), img, rlib.ease((T - a) / .18))
-    dark = 18.45 < T < 27.0; orange = 6.3 <= T < 8.6
+        pa, pb, pos, poe, pf = scene_at(a - .001); img = Image.blend(pf((T - pa) * (poe - pos) / (pb - pa), T).result(), img, rlib.ease((T - a) / .18))
+    dark = M(18.45) < T < M(27.0); orange = M(6.3) <= T < M(8.6)
     for g in GROUPS:
         if g[0][0] - .12 <= T < g[-1][1] + .22:
             lay = caption_img(T, g, dark, orange); img = img.convert("RGBA"); img.alpha_composite(lay, (0, 1040)); img = img.convert("RGB"); break
@@ -74,7 +82,7 @@ def render(frame):
 
 # ------------------------------------------------------------------ audio
 def music_sfx():
-    n = int(TOTAL * SR); out = np.zeros(n, np.float32); rng = np.random.default_rng(4)
+    n = int(TOTALX * SR); out = np.zeros(n, np.float32); rng = np.random.default_rng(4)
     def tt(d): return np.arange(int(d * SR)) / SR
     def add(st, sig, g=1.0):
         i = int(st * SR)
@@ -91,23 +99,23 @@ def music_sfx():
     bpm = 120; beat = 60 / bpm
     chords = [(220, 261.6, 329.6), (174.6, 220, 261.6), (261.6, 329.6, 392), (196, 246.9, 293.7)]
     t0 = 0.0; bar = 0
-    while t0 < TOTAL:
+    while t0 < TOTALX:
         ch = chords[bar % 4]; g = .05 + .05 * clamp(t0 / 6)
         add(t0, pad(ch[0] / 2, 4 * beat + .3, .09), 1)
         for k in range(8): add(t0 + k * beat / 2, pluck(ch[k % 3] * (2 if k % 4 == 3 else 1)), g)
-        if t0 >= 3.9:
+        if t0 >= M(3.9):
             for k in range(4): add(t0 + k * beat, kick(), .28); add(t0 + k * beat + beat / 2, hat(), .04)
         t0 += 4 * beat; bar += 1
-    for a, b, fn in scenes.SCENES[1:]: add(a - .1, whoosh(), .22)
-    for i in range(6): add(1.0 + i * .28 + .25, tick(), .35)          # toggles
-    add(6.3, kick(), .9); add(7.9, kick(), .6); add(18.0, kick(), .9)
-    for i in range(5): add(9.8 + i * .13 + .1, tick(1800 + 100 * i), .3)
+    for s in SCHED[1:]: add(s[0] - .1, whoosh(), .22)
+    for i in range(6): add(M(1.0 + i * .28 + .25), tick(), .35)          # toggles
+    add(M(6.3), kick(), .9); add(M(7.9), kick(), .6); add(M(18.0), kick(), .9)
+    for i in range(5): add(M(9.8) + i * .13 + .1, tick(1800 + 100 * i), .3)
     for tm in (20.0,): pass
-    for i, tm in enumerate((28.9, 29.35)): add(tm, tick(2200, .05), .35)
-    add(31.3, pluck(880, .6), .3); add(31.3, pluck(1320, .6), .2)
-    add(32.1, tick(1500, .05), .4); add(32.4, tick(1700, .05), .4)
-    for i in range(7): add(33.1 + i * .08, tick(1900 + 60 * i, .02), .2)
-    out *= np.clip((TOTAL - np.arange(n) / SR) / .8, 0, 1)
+    for i, tm in enumerate((28.9, 29.35)): add(M(tm), tick(2200, .05), .35)
+    add(M(31.3), pluck(880, .6), .3); add(M(31.3), pluck(1320, .6), .2)
+    add(M(32.1), tick(1500, .05), .4); add(M(32.4), tick(1700, .05), .4)
+    for i in range(7): add(M(33.1) + i * .08, tick(1900 + 60 * i, .02), .2)
+    out *= np.clip((TOTALX - np.arange(n) / SR) / .8, 0, 1)
     return out
 
 def load_audio(path):
@@ -152,13 +160,64 @@ def fit_voice(src):
     voice /= max(1e-6, np.abs(voice).max()) / .95
     print("clip fit:", " ".join(report)); return voice, spans
 
+
+def find_gaps(a, min_gap=.25, thr=.012):
+    hop = int(.01 * SR); k = len(a) // hop; env = np.abs(a[:k * hop]).reshape(k, hop).max(1) > thr
+    on = np.argmax(env) * .01; off = (k - np.argmax(env[::-1])) * .01; gaps = []; i = int(on / .01)
+    while i < k and i * .01 < off:
+        if not env[i]:
+            j = i
+            while j < k and not env[j]: j += 1
+            if (j - i) * .01 >= min_gap and j * .01 < off: gaps.append(((i + j) / 2 * .01, (j - i) * .01))
+            i = j
+        else: i += 1
+    return on, off, gaps
+
+def split_aligned(a):
+    """Split one continuous narration into the 12 clips. A TTS voice reads at a near-constant rate, so boundaries are
+    chosen among the pauses so that every clip's length matches its text length (squared relative error), with a small
+    preference for longer pauses."""
+    n = len(script_te.CLIPS); on, off, gaps = find_gaps(a)
+    w = [len(re.sub(r"[^A-Za-z]", "", t)) + 3 * len(re.findall(r"[.,?!…]", t)) for _, _, t in script_te.CLIPS]
+    r = (off - on) / sum(w); G = len(gaps); INF = 1e9
+    def sc(t0, t1, k): p = w[k] * r; return ((t1 - t0 - p) / max(p, 1)) ** 2
+    cost = [[INF] * G for _ in range(n - 1)]; prev = [[-1] * G for _ in range(n - 1)]
+    for j in range(G): cost[0][j] = sc(on, gaps[j][0], 0) - .15 * min(1, gaps[j][1])
+    for k in range(1, n - 1):
+        for j in range(G):
+            for p in range(j):
+                c = cost[k - 1][p] + sc(gaps[p][0], gaps[j][0], k) - .15 * min(1, gaps[j][1])
+                if c < cost[k][j]: cost[k][j] = c; prev[k][j] = p
+    j = min(range(G), key=lambda j: cost[n - 2][j] + sc(gaps[j][0], off, n - 1)); cuts = [j]
+    for k in range(n - 2, 0, -1): j = prev[k][j]; cuts.append(j)
+    cuts = [gaps[j][0] for j in reversed(cuts)]
+    edges = [on - .05] + cuts + [off + .05]
+    print("cut points (s):", " ".join(f"{c:.1f}" for c in cuts))
+    return [a[int(max(0, s) * SR):int(e * SR)] for s, e in zip(edges[:-1], edges[1:])]
+
+def fit_voice_stretch(src):
+    """Natural-speed voice: every scene is stretched to hold its clip (no speed-up)."""
+    global TOTALX, SCHED
+    clips = [trim_silence(c) for c in split_aligned(load_audio(src))]
+    SCHED = []; t = 0.0; spans = []; starts = []
+    for (oa, ob, text), c, (sa, sb, fn) in zip(script_te.CLIPS, clips, scenes.SCENES):
+        d = len(c) / SR; D = max(ob - oa, d + .5 + (.3 if t == 0 else 0)); st = t + (.3 if t == 0 else .08)
+        SCHED.append((t, t + D, sa, sb, fn)); spans.append((st, d)); starts.append(st); t += D
+    TOTALX = t + .6; SCHED[-1] = (SCHED[-1][0], TOTALX, SCHED[-1][2], SCHED[-1][3], SCHED[-1][4])
+    voice = np.zeros(int(TOTALX * SR), np.float32)
+    for c, st in zip(clips, starts): i = int(st * SR); voice[i:i + len(c)] += c[:len(voice) - i]
+    voice /= max(1e-6, np.abs(voice).max()) / .95
+    print("clip lengths (s):", " ".join(f"{len(c)/SR:.1f}" for c in clips), "| total video: %.1f s" % TOTALX)
+    return voice, spans
+
 def write_wav(path, mono):
     with wave.open(path, "wb") as w:
         w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes((np.stack([mono, mono], 1) * 32767).astype("<i2").tobytes())
 
 if __name__ == "__main__":
     out = sys.argv[1]; voice = None
-    if "--voice" in sys.argv: voice, spans = fit_voice(sys.argv[sys.argv.index("--voice") + 1])
+    if "--voice" in sys.argv and "--stretch" in sys.argv: voice, spans = fit_voice_stretch(sys.argv[sys.argv.index("--voice") + 1])
+    elif "--voice" in sys.argv: voice, spans = fit_voice(sys.argv[sys.argv.index("--voice") + 1])
     else: spans = [(a + .05, (b - a) * .9) for a, b, _ in script_te.CLIPS]
     plan(spans); GROUPS.extend(groups())
     m = music_sfx()
@@ -171,9 +230,9 @@ if __name__ == "__main__":
         for tt in [float(x) for x in sys.argv[sys.argv.index("--preview") + 1].split(",")]:
             Image.frombytes("RGB", (W, H), render(int(tt * FPS))).resize((360, 640)).save(f"{out}_{tt:05.1f}.png")
         sys.exit()
-    nfr = int(TOTAL * FPS)
+    nfr = int(TOTALX * FPS)
     ff = subprocess.Popen(["ffmpeg", "-y", "-v", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-", "-i", wavp, "-c:v", "libx264", "-preset", "medium", "-crf", "19",
-                           "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k", "-t", str(TOTAL), "-movflags", "+faststart", out], stdin=subprocess.PIPE)
+                           "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k", "-t", "%.3f" % TOTALX, "-movflags", "+faststart", out], stdin=subprocess.PIPE)
     with Pool(4) as pool:
         for i, fr in enumerate(pool.imap(render, range(nfr), chunksize=6)):
             ff.stdin.write(fr)
