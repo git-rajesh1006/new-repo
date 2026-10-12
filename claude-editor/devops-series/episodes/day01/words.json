@@ -1,0 +1,1674 @@
+{
+ "segments": [
+  {
+   "start": 0.12,
+   "end": 2.46,
+   "nuc": 7,
+   "peaks": [
+    1.31,
+    1.4,
+    1.53,
+    1.76,
+    1.92,
+    2.26,
+    2.33
+   ]
+  },
+  {
+   "start": 3.33,
+   "end": 3.85,
+   "nuc": 2,
+   "peaks": [
+    3.36,
+    3.59
+   ]
+  },
+  {
+   "start": 3.99,
+   "end": 4.5200000000000005,
+   "nuc": 3,
+   "peaks": [
+    4.08,
+    4.18,
+    4.32
+   ]
+  },
+  {
+   "start": 4.64,
+   "end": 5.37,
+   "nuc": 4,
+   "peaks": [
+    4.66,
+    4.83,
+    5.1,
+    5.28
+   ]
+  },
+  {
+   "start": 6.25,
+   "end": 7.34,
+   "nuc": 4,
+   "peaks": [
+    6.54,
+    6.71,
+    6.94,
+    7.14
+   ]
+  },
+  {
+   "start": 7.44,
+   "end": 9.48,
+   "nuc": 14,
+   "peaks": [
+    7.47,
+    7.59,
+    7.71,
+    7.8,
+    7.89,
+    8.05,
+    8.12,
+    8.31,
+    8.46,
+    8.6,
+    8.82,
+    9.04,
+    9.2,
+    9.33
+   ]
+  },
+  {
+   "start": 9.96,
+   "end": 11.47,
+   "nuc": 10,
+   "peaks": [
+    10.01,
+    10.19,
+    10.36,
+    10.59,
+    10.71,
+    10.85,
+    11.01,
+    11.16,
+    11.31,
+    11.44
+   ]
+  },
+  {
+   "start": 11.58,
+   "end": 12.39,
+   "nuc": 5,
+   "peaks": [
+    11.64,
+    11.85,
+    12.03,
+    12.17,
+    12.25
+   ]
+  },
+  {
+   "start": 12.57,
+   "end": 13.26,
+   "nuc": 3,
+   "peaks": [
+    12.7,
+    12.88,
+    13.17
+   ]
+  },
+  {
+   "start": 14.1,
+   "end": 14.77,
+   "nuc": 4,
+   "peaks": [
+    14.23,
+    14.31,
+    14.49,
+    14.67
+   ]
+  },
+  {
+   "start": 14.9,
+   "end": 15.13,
+   "nuc": 1,
+   "peaks": [
+    14.98
+   ]
+  },
+  {
+   "start": 15.24,
+   "end": 16.43,
+   "nuc": 7,
+   "peaks": [
+    15.3,
+    15.47,
+    15.63,
+    15.77,
+    15.99,
+    16.1,
+    16.29
+   ]
+  },
+  {
+   "start": 16.55,
+   "end": 17.72,
+   "nuc": 6,
+   "peaks": [
+    16.67,
+    16.85,
+    17.13,
+    17.37,
+    17.49,
+    17.66
+   ]
+  },
+  {
+   "start": 18.81,
+   "end": 20.96,
+   "nuc": 12,
+   "peaks": [
+    18.92,
+    19.08,
+    19.2,
+    19.37,
+    19.58,
+    19.85,
+    19.95,
+    20.17,
+    20.33,
+    20.45,
+    20.69,
+    20.91
+   ]
+  },
+  {
+   "start": 21.12,
+   "end": 21.26,
+   "nuc": 1,
+   "peaks": [
+    21.17
+   ]
+  },
+  {
+   "start": 21.96,
+   "end": 23.3,
+   "nuc": 6,
+   "peaks": [
+    22.1,
+    22.2,
+    22.43,
+    22.62,
+    23.1,
+    23.25
+   ]
+  },
+  {
+   "start": 23.39,
+   "end": 24.84,
+   "nuc": 9,
+   "peaks": [
+    23.45,
+    23.7,
+    23.87,
+    24.1,
+    24.27,
+    24.42,
+    24.58,
+    24.66,
+    24.81
+   ]
+  },
+  {
+   "start": 24.95,
+   "end": 25.3,
+   "nuc": 2,
+   "peaks": [
+    25.01,
+    25.25
+   ]
+  },
+  {
+   "start": 25.62,
+   "end": 26.25,
+   "nuc": 4,
+   "peaks": [
+    25.68,
+    25.87,
+    25.94,
+    26.13
+   ]
+  },
+  {
+   "start": 26.87,
+   "end": 28.11,
+   "nuc": 5,
+   "peaks": [
+    27.02,
+    27.09,
+    27.25,
+    27.38,
+    27.81
+   ]
+  },
+  {
+   "start": 28.26,
+   "end": 28.5,
+   "nuc": 1,
+   "peaks": [
+    28.39
+   ]
+  },
+  {
+   "start": 28.650000000000002,
+   "end": 28.900000000000002,
+   "nuc": 2,
+   "peaks": [
+    28.73,
+    28.85
+   ]
+  },
+  {
+   "start": 29.01,
+   "end": 29.59,
+   "nuc": 4,
+   "peaks": [
+    29.04,
+    29.12,
+    29.32,
+    29.43
+   ]
+  },
+  {
+   "start": 29.92,
+   "end": 31.0,
+   "nuc": 4,
+   "peaks": [
+    29.96,
+    30.11,
+    30.3,
+    30.81
+   ]
+  },
+  {
+   "start": 31.16,
+   "end": 31.470000000000002,
+   "nuc": 2,
+   "peaks": [
+    31.26,
+    31.42
+   ]
+  },
+  {
+   "start": 31.66,
+   "end": 32.17,
+   "nuc": 3,
+   "peaks": [
+    31.73,
+    32.01,
+    32.11
+   ]
+  },
+  {
+   "start": 32.4,
+   "end": 33.160000000000004,
+   "nuc": 4,
+   "peaks": [
+    32.47,
+    32.65,
+    32.85,
+    33.01
+   ]
+  },
+  {
+   "start": 34.2,
+   "end": 36.12,
+   "nuc": 9,
+   "peaks": [
+    34.24,
+    34.42,
+    34.6,
+    34.85,
+    35.24,
+    35.55,
+    35.7,
+    35.9,
+    36.08
+   ]
+  },
+  {
+   "start": 36.24,
+   "end": 36.39,
+   "nuc": 1,
+   "peaks": [
+    36.3
+   ]
+  },
+  {
+   "start": 36.49,
+   "end": 37.38,
+   "nuc": 5,
+   "peaks": [
+    36.52,
+    36.75,
+    36.9,
+    36.99,
+    37.21
+   ]
+  },
+  {
+   "start": 38.07,
+   "end": 40.12,
+   "nuc": 11,
+   "peaks": [
+    38.33,
+    38.48,
+    38.76,
+    38.84,
+    39.0,
+    39.27,
+    39.48,
+    39.63,
+    39.74,
+    39.86,
+    40.06
+   ]
+  },
+  {
+   "start": 40.21,
+   "end": 41.0,
+   "nuc": 4,
+   "peaks": [
+    40.28,
+    40.51,
+    40.66,
+    40.93
+   ]
+  },
+  {
+   "start": 41.12,
+   "end": 41.37,
+   "nuc": 2,
+   "peaks": [
+    41.18,
+    41.29
+   ]
+  },
+  {
+   "start": 41.550000000000004,
+   "end": 41.75,
+   "nuc": 1,
+   "peaks": []
+  },
+  {
+   "start": 42.11,
+   "end": 42.95,
+   "nuc": 4,
+   "peaks": [
+    42.19,
+    42.46,
+    42.68,
+    42.83
+   ]
+  },
+  {
+   "start": 43.25,
+   "end": 44.160000000000004,
+   "nuc": 7,
+   "peaks": [
+    43.29,
+    43.41,
+    43.57,
+    43.73,
+    43.87,
+    44.03,
+    44.13
+   ]
+  },
+  {
+   "start": 44.25,
+   "end": 44.54,
+   "nuc": 2,
+   "peaks": [
+    44.3,
+    44.48
+   ]
+  },
+  {
+   "start": 44.64,
+   "end": 44.75,
+   "nuc": 1,
+   "peaks": [
+    44.66
+   ]
+  },
+  {
+   "start": 45.35,
+   "end": 46.14,
+   "nuc": 5,
+   "peaks": [
+    45.39,
+    45.52,
+    45.68,
+    45.88,
+    45.98
+   ]
+  },
+  {
+   "start": 46.230000000000004,
+   "end": 47.550000000000004,
+   "nuc": 6,
+   "peaks": [
+    46.41,
+    46.55,
+    46.75,
+    46.91,
+    47.08,
+    47.45
+   ]
+  },
+  {
+   "start": 47.65,
+   "end": 48.370000000000005,
+   "nuc": 3,
+   "peaks": [
+    47.71,
+    47.94,
+    48.2
+   ]
+  },
+  {
+   "start": 48.79,
+   "end": 49.51,
+   "nuc": 4,
+   "peaks": [
+    48.86,
+    49.02,
+    49.16,
+    49.33
+   ]
+  },
+  {
+   "start": 49.67,
+   "end": 51.64,
+   "nuc": 12,
+   "peaks": [
+    49.73,
+    49.84,
+    50.03,
+    50.21,
+    50.47,
+    50.63,
+    50.78,
+    50.94,
+    51.12,
+    51.28,
+    51.54,
+    51.61
+   ]
+  },
+  {
+   "start": 51.92,
+   "end": 52.7,
+   "nuc": 5,
+   "peaks": [
+    52.03,
+    52.14,
+    52.39,
+    52.52,
+    52.69
+   ]
+  },
+  {
+   "start": 53.480000000000004,
+   "end": 54.69,
+   "nuc": 8,
+   "peaks": [
+    53.57,
+    53.67,
+    53.77,
+    53.91,
+    54.07,
+    54.26,
+    54.46,
+    54.62
+   ]
+  },
+  {
+   "start": 54.79,
+   "end": 55.42,
+   "nuc": 3,
+   "peaks": [
+    54.91,
+    55.05,
+    55.24
+   ]
+  },
+  {
+   "start": 55.7,
+   "end": 57.660000000000004,
+   "nuc": 11,
+   "peaks": [
+    55.81,
+    55.98,
+    56.19,
+    56.4,
+    56.53,
+    56.76,
+    56.89,
+    57.17,
+    57.29,
+    57.38,
+    57.61
+   ]
+  },
+  {
+   "start": 57.76,
+   "end": 57.88,
+   "nuc": 2,
+   "peaks": [
+    57.78,
+    57.86
+   ]
+  },
+  {
+   "start": 57.97,
+   "end": 58.35,
+   "nuc": 2,
+   "peaks": [
+    58.01,
+    58.17
+   ]
+  },
+  {
+   "start": 58.61,
+   "end": 59.480000000000004,
+   "nuc": 4,
+   "peaks": [
+    58.88,
+    59.01,
+    59.21,
+    59.37
+   ]
+  },
+  {
+   "start": 61.2,
+   "end": 61.300000000000004,
+   "nuc": 1,
+   "peaks": [
+    61.22
+   ]
+  }
+ ],
+ "words": [
+  {
+   "w": "DevOps",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 0,
+   "start": 0.12,
+   "end": 0.789
+  },
+  {
+   "w": "ante",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 0,
+   "start": 0.789,
+   "end": 1.457
+  },
+  {
+   "w": "enti?",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 0,
+   "start": 1.457,
+   "end": 2.126
+  },
+  {
+   "w": "Aithe",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 0,
+   "start": 2.126,
+   "end": 2.46
+  },
+  {
+   "w": "munduga",
+   "syl": 3,
+   "send": false,
+   "comma": false,
+   "sent": 0,
+   "start": 3.33,
+   "end": 3.85
+  },
+  {
+   "w": "idi",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 0,
+   "start": 3.99,
+   "end": 4.52
+  },
+  {
+   "w": "telusukundam!",
+   "syl": 5,
+   "send": true,
+   "comma": false,
+   "sent": 0,
+   "start": 4.64,
+   "end": 5.37
+  },
+  {
+   "w": "Imagine",
+   "syl": 3,
+   "send": false,
+   "comma": false,
+   "sent": 1,
+   "start": 6.25,
+   "end": 6.904
+  },
+  {
+   "w": "cheyandi,",
+   "syl": 2,
+   "send": false,
+   "comma": true,
+   "sent": 1,
+   "start": 6.904,
+   "end": 7.34
+  },
+  {
+   "w": "oka",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 1,
+   "start": 7.44,
+   "end": 7.712
+  },
+  {
+   "w": "developer",
+   "syl": 4,
+   "send": false,
+   "comma": false,
+   "sent": 1,
+   "start": 7.712,
+   "end": 8.256
+  },
+  {
+   "w": "application",
+   "syl": 4,
+   "send": false,
+   "comma": false,
+   "sent": 1,
+   "start": 8.256,
+   "end": 8.8
+  },
+  {
+   "w": "create",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 1,
+   "start": 8.8,
+   "end": 9.072
+  },
+  {
+   "w": "chesadu.",
+   "syl": 3,
+   "send": true,
+   "comma": false,
+   "sent": 1,
+   "start": 9.072,
+   "end": 9.48
+  },
+  {
+   "w": "Kaani",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 2,
+   "start": 9.96,
+   "end": 10.212
+  },
+  {
+   "w": "aa",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 2,
+   "start": 10.212,
+   "end": 10.338
+  },
+  {
+   "w": "application",
+   "syl": 4,
+   "send": false,
+   "comma": false,
+   "sent": 2,
+   "start": 10.338,
+   "end": 10.841
+  },
+  {
+   "w": "server",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 2,
+   "start": 10.841,
+   "end": 11.093
+  },
+  {
+   "w": "lo",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 2,
+   "start": 11.093,
+   "end": 11.218
+  },
+  {
+   "w": "deploy",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 2,
+   "start": 11.218,
+   "end": 11.47
+  },
+  {
+   "w": "chesinappudu",
+   "syl": 5,
+   "send": false,
+   "comma": false,
+   "sent": 2,
+   "start": 11.58,
+   "end": 12.159
+  },
+  {
+   "w": "errors",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 2,
+   "start": 12.159,
+   "end": 12.39
+  },
+  {
+   "w": "vastunnayi.",
+   "syl": 3,
+   "send": true,
+   "comma": false,
+   "sent": 2,
+   "start": 12.57,
+   "end": 13.26
+  },
+  {
+   "w": "Development",
+   "syl": 4,
+   "send": false,
+   "comma": false,
+   "sent": 3,
+   "start": 14.1,
+   "end": 14.636
+  },
+  {
+   "w": "team",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 3,
+   "start": 14.636,
+   "end": 14.77
+  },
+  {
+   "w": "ki,",
+   "syl": 1,
+   "send": false,
+   "comma": true,
+   "sent": 3,
+   "start": 14.9,
+   "end": 15.13
+  },
+  {
+   "w": "Operations",
+   "syl": 4,
+   "send": false,
+   "comma": false,
+   "sent": 3,
+   "start": 15.24,
+   "end": 15.835
+  },
+  {
+   "w": "team",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 3,
+   "start": 15.835,
+   "end": 15.984
+  },
+  {
+   "w": "ki",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 3,
+   "start": 15.984,
+   "end": 16.132
+  },
+  {
+   "w": "madhya",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 3,
+   "start": 16.132,
+   "end": 16.43
+  },
+  {
+   "w": "coordination",
+   "syl": 4,
+   "send": false,
+   "comma": false,
+   "sent": 3,
+   "start": 16.55,
+   "end": 17.07
+  },
+  {
+   "w": "sarigga",
+   "syl": 3,
+   "send": false,
+   "comma": false,
+   "sent": 3,
+   "start": 17.07,
+   "end": 17.46
+  },
+  {
+   "w": "ledu.",
+   "syl": 2,
+   "send": true,
+   "comma": false,
+   "sent": 3,
+   "start": 17.46,
+   "end": 17.72
+  },
+  {
+   "w": "Ilaanti",
+   "syl": 3,
+   "send": false,
+   "comma": false,
+   "sent": 4,
+   "start": 18.81,
+   "end": 19.348
+  },
+  {
+   "w": "problems",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 4,
+   "start": 19.348,
+   "end": 19.706
+  },
+  {
+   "w": "solve",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 4,
+   "start": 19.706,
+   "end": 19.885
+  },
+  {
+   "w": "cheyadanike",
+   "syl": 3,
+   "send": false,
+   "comma": false,
+   "sent": 4,
+   "start": 19.885,
+   "end": 20.422
+  },
+  {
+   "w": "DevOps",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 4,
+   "start": 20.422,
+   "end": 20.781
+  },
+  {
+   "w": "use",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 4,
+   "start": 20.781,
+   "end": 20.96
+  },
+  {
+   "w": "chestaru!",
+   "syl": 3,
+   "send": true,
+   "comma": false,
+   "sent": 4,
+   "start": 21.12,
+   "end": 21.26
+  },
+  {
+   "w": "DevOps",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 5,
+   "start": 21.96,
+   "end": 22.295
+  },
+  {
+   "w": "ante",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 5,
+   "start": 22.295,
+   "end": 22.63
+  },
+  {
+   "w": "Development",
+   "syl": 4,
+   "send": false,
+   "comma": false,
+   "sent": 5,
+   "start": 22.63,
+   "end": 23.3
+  },
+  {
+   "w": "and",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 5,
+   "start": 23.39,
+   "end": 23.571
+  },
+  {
+   "w": "Operations",
+   "syl": 4,
+   "send": false,
+   "comma": false,
+   "sent": 5,
+   "start": 23.571,
+   "end": 24.296
+  },
+  {
+   "w": "ane",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 5,
+   "start": 24.296,
+   "end": 24.478
+  },
+  {
+   "w": "rendu",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 5,
+   "start": 24.478,
+   "end": 24.84
+  },
+  {
+   "w": "concepts",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 5,
+   "start": 24.95,
+   "end": 25.3
+  },
+  {
+   "w": "combination.",
+   "syl": 4,
+   "send": true,
+   "comma": false,
+   "sent": 5,
+   "start": 25.62,
+   "end": 26.25
+  },
+  {
+   "w": "Deeni",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 6,
+   "start": 26.87,
+   "end": 27.283
+  },
+  {
+   "w": "main",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 6,
+   "start": 27.283,
+   "end": 27.49
+  },
+  {
+   "w": "goal,",
+   "syl": 1,
+   "send": false,
+   "comma": true,
+   "sent": 6,
+   "start": 27.49,
+   "end": 27.697
+  },
+  {
+   "w": "software",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 6,
+   "start": 27.697,
+   "end": 28.11
+  },
+  {
+   "w": "ni",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 6,
+   "start": 28.26,
+   "end": 28.5
+  },
+  {
+   "w": "fast",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 6,
+   "start": 28.65,
+   "end": 28.775
+  },
+  {
+   "w": "ga,",
+   "syl": 1,
+   "send": false,
+   "comma": true,
+   "sent": 6,
+   "start": 28.775,
+   "end": 28.9
+  },
+  {
+   "w": "reliable",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 6,
+   "start": 29.01,
+   "end": 29.397
+  },
+  {
+   "w": "ga",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 6,
+   "start": 29.397,
+   "end": 29.59
+  },
+  {
+   "w": "develop",
+   "syl": 3,
+   "send": false,
+   "comma": false,
+   "sent": 6,
+   "start": 29.92,
+   "end": 31.0
+  },
+  {
+   "w": "chesi",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 6,
+   "start": 31.16,
+   "end": 31.47
+  },
+  {
+   "w": "deploy",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 6,
+   "start": 31.66,
+   "end": 32.17
+  },
+  {
+   "w": "cheyadam.",
+   "syl": 2,
+   "send": true,
+   "comma": false,
+   "sent": 6,
+   "start": 32.4,
+   "end": 32.704
+  },
+  {
+   "w": "Example",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 7,
+   "start": 32.704,
+   "end": 33.008
+  },
+  {
+   "w": "ki,",
+   "syl": 1,
+   "send": false,
+   "comma": true,
+   "sent": 7,
+   "start": 33.008,
+   "end": 33.16
+  },
+  {
+   "w": "developer",
+   "syl": 4,
+   "send": false,
+   "comma": false,
+   "sent": 7,
+   "start": 34.2,
+   "end": 35.053
+  },
+  {
+   "w": "GitHub",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 7,
+   "start": 35.053,
+   "end": 35.48
+  },
+  {
+   "w": "lo",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 7,
+   "start": 35.48,
+   "end": 35.693
+  },
+  {
+   "w": "code",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 7,
+   "start": 35.693,
+   "end": 36.12
+  },
+  {
+   "w": "push",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 7,
+   "start": 36.24,
+   "end": 36.39
+  },
+  {
+   "w": "chesadu",
+   "syl": 3,
+   "send": false,
+   "comma": false,
+   "sent": 7,
+   "start": 36.49,
+   "end": 36.871
+  },
+  {
+   "w": "anukondi.",
+   "syl": 4,
+   "send": true,
+   "comma": false,
+   "sent": 7,
+   "start": 36.871,
+   "end": 37.38
+  },
+  {
+   "w": "CI/CD",
+   "syl": 4,
+   "send": false,
+   "comma": false,
+   "sent": 8,
+   "start": 38.07,
+   "end": 38.753
+  },
+  {
+   "w": "pipeline",
+   "syl": 3,
+   "send": false,
+   "comma": false,
+   "sent": 8,
+   "start": 38.753,
+   "end": 39.266
+  },
+  {
+   "w": "automatic",
+   "syl": 4,
+   "send": false,
+   "comma": false,
+   "sent": 8,
+   "start": 39.266,
+   "end": 39.949
+  },
+  {
+   "w": "ga",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 8,
+   "start": 39.949,
+   "end": 40.12
+  },
+  {
+   "w": "code",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 8,
+   "start": 40.21,
+   "end": 40.605
+  },
+  {
+   "w": "ni",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 8,
+   "start": 40.605,
+   "end": 40.802
+  },
+  {
+   "w": "test",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 8,
+   "start": 40.802,
+   "end": 41.0
+  },
+  {
+   "w": "chestundi,",
+   "syl": 3,
+   "send": false,
+   "comma": true,
+   "sent": 8,
+   "start": 41.12,
+   "end": 41.37
+  },
+  {
+   "w": "build",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 8,
+   "start": 41.55,
+   "end": 41.75
+  },
+  {
+   "w": "chestundi,",
+   "syl": 3,
+   "send": false,
+   "comma": true,
+   "sent": 8,
+   "start": 42.11,
+   "end": 42.95
+  },
+  {
+   "w": "tarvata",
+   "syl": 3,
+   "send": false,
+   "comma": false,
+   "sent": 8,
+   "start": 43.25,
+   "end": 43.591
+  },
+  {
+   "w": "application",
+   "syl": 4,
+   "send": false,
+   "comma": false,
+   "sent": 8,
+   "start": 43.591,
+   "end": 44.046
+  },
+  {
+   "w": "ni",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 8,
+   "start": 44.046,
+   "end": 44.16
+  },
+  {
+   "w": "deploy",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 8,
+   "start": 44.25,
+   "end": 44.54
+  },
+  {
+   "w": "chestundi.",
+   "syl": 3,
+   "send": true,
+   "comma": false,
+   "sent": 8,
+   "start": 44.64,
+   "end": 44.75
+  },
+  {
+   "w": "Remember,",
+   "syl": 3,
+   "send": false,
+   "comma": true,
+   "sent": 9,
+   "start": 45.35,
+   "end": 45.824
+  },
+  {
+   "w": "DevOps",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 9,
+   "start": 45.824,
+   "end": 46.14
+  },
+  {
+   "w": "ante",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 9,
+   "start": 46.23,
+   "end": 46.67
+  },
+  {
+   "w": "kevalam",
+   "syl": 3,
+   "send": false,
+   "comma": false,
+   "sent": 9,
+   "start": 46.67,
+   "end": 47.33
+  },
+  {
+   "w": "tools",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 9,
+   "start": 47.33,
+   "end": 47.55
+  },
+  {
+   "w": "nerchukovadam",
+   "syl": 5,
+   "send": false,
+   "comma": false,
+   "sent": 9,
+   "start": 47.65,
+   "end": 48.37
+  },
+  {
+   "w": "kaadu.",
+   "syl": 2,
+   "send": true,
+   "comma": false,
+   "sent": 9,
+   "start": 48.79,
+   "end": 49.03
+  },
+  {
+   "w": "Automation,",
+   "syl": 4,
+   "send": false,
+   "comma": true,
+   "sent": 10,
+   "start": 49.03,
+   "end": 49.51
+  },
+  {
+   "w": "collaboration,",
+   "syl": 5,
+   "send": false,
+   "comma": true,
+   "sent": 10,
+   "start": 49.67,
+   "end": 50.374
+  },
+  {
+   "w": "continuous",
+   "syl": 3,
+   "send": false,
+   "comma": false,
+   "sent": 10,
+   "start": 50.374,
+   "end": 50.796
+  },
+  {
+   "w": "improvement",
+   "syl": 4,
+   "send": false,
+   "comma": false,
+   "sent": 10,
+   "start": 50.796,
+   "end": 51.359
+  },
+  {
+   "w": "kuda",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 10,
+   "start": 51.359,
+   "end": 51.64
+  },
+  {
+   "w": "chala",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 10,
+   "start": 51.92,
+   "end": 52.232
+  },
+  {
+   "w": "important.",
+   "syl": 3,
+   "send": true,
+   "comma": false,
+   "sent": 10,
+   "start": 52.232,
+   "end": 52.7
+  },
+  {
+   "w": "Idi",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 11,
+   "start": 53.48,
+   "end": 53.782
+  },
+  {
+   "w": "100",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 11,
+   "start": 53.782,
+   "end": 54.085
+  },
+  {
+   "w": "Days",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 11,
+   "start": 54.085,
+   "end": 54.236
+  },
+  {
+   "w": "of",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 11,
+   "start": 54.236,
+   "end": 54.388
+  },
+  {
+   "w": "DevOps",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 11,
+   "start": 54.388,
+   "end": 54.69
+  },
+  {
+   "w": "lo",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 11,
+   "start": 54.79,
+   "end": 55.0
+  },
+  {
+   "w": "Day",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 11,
+   "start": 55.0,
+   "end": 55.21
+  },
+  {
+   "w": "1!",
+   "syl": 1,
+   "send": true,
+   "comma": false,
+   "sent": 11,
+   "start": 55.21,
+   "end": 55.42
+  },
+  {
+   "w": "Repu",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 12,
+   "start": 55.7,
+   "end": 56.056
+  },
+  {
+   "w": "Day",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 12,
+   "start": 56.056,
+   "end": 56.235
+  },
+  {
+   "w": "2",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 12,
+   "start": 56.235,
+   "end": 56.413
+  },
+  {
+   "w": "lo,",
+   "syl": 1,
+   "send": false,
+   "comma": true,
+   "sent": 12,
+   "start": 56.413,
+   "end": 56.591
+  },
+  {
+   "w": "DevOps",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 12,
+   "start": 56.591,
+   "end": 56.947
+  },
+  {
+   "w": "Engineer",
+   "syl": 3,
+   "send": false,
+   "comma": false,
+   "sent": 12,
+   "start": 56.947,
+   "end": 57.482
+  },
+  {
+   "w": "em",
+   "syl": 1,
+   "send": false,
+   "comma": false,
+   "sent": 12,
+   "start": 57.482,
+   "end": 57.66
+  },
+  {
+   "w": "chestaaro",
+   "syl": 3,
+   "send": false,
+   "comma": false,
+   "sent": 12,
+   "start": 57.76,
+   "end": 57.88
+  },
+  {
+   "w": "chuddam.",
+   "syl": 2,
+   "send": true,
+   "comma": false,
+   "sent": 12,
+   "start": 57.97,
+   "end": 58.35
+  },
+  {
+   "w": "Follow",
+   "syl": 2,
+   "send": false,
+   "comma": false,
+   "sent": 13,
+   "start": 58.61,
+   "end": 58.958
+  },
+  {
+   "w": "avvandi!",
+   "syl": 3,
+   "send": true,
+   "comma": false,
+   "sent": 13,
+   "start": 58.958,
+   "end": 59.48
+  }
+ ]
+}

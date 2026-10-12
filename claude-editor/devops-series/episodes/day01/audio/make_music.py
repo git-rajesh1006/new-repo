@@ -89,11 +89,11 @@ put(music, np.pad(kick(.6), (0, 0)) * 1.1, 60.9); put(music, pluck(midi(81), 1.2
 for b in (2.95, 13.5, 26.55, 37.8, 48.55):                       # whoosh into each scene
     put(sfx, noise_sweep(.55, True, 400, 6000), b - .45)
 put(sfx, impact() * .9, 13.5); put(sfx, impact() * .9, 26.55)     # solution + example hits
-for te in (8.6, 9.3, 10.6, 12.0):                                  # error buzzes
+for te in (9.3, 9.9, 11.0, 12.5):                                  # error buzzes
     tb = tt(.16); put(sfx, np.sign(np.sin(2*np.pi*95*tb)) * np.exp(-tb*14) * .35, te, .0)
-for tp in (32.2, 35.8):                                            # tests passed / live pings
+for tp in (32.8, 36.9):                                            # tests passed / live pings
     put(sfx, (pluck(midi(84), .7) + pluck(midi(91), .7) * .8) * 1.2, tp, .2)
-put(sfx, impact(1.2) * .8, 50.0)                                   # "DAY 1" slam
+put(sfx, impact(1.2) * .8, 50.6)                                   # "DAY 1" slam
 def w(name, x):
     x = np.clip(x, -1, 1); p = (x.T * 32767).astype("<i2")
     with wave.open(name, "wb") as f: f.setnchannels(2); f.setsampwidth(2); f.setframerate(SR); f.writeframes(p.tobytes())
