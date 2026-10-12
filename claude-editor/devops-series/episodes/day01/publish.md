@@ -1,6 +1,6 @@
 # Day 1 — publishing metadata
 Topic: What is DevOps? Explained with a real-world example  (Phase 1 — DevOps fundamentals)
-Files: `day01_final_tts.mp4` (9:16, 69.7 s) · covers in `thumbs/`
+Files: `day01_final_tts_1.25x.mp4` (9:16, 55.8 s, the one to upload) · covers in `thumbs/`
 
 ## YouTube Shorts
 Title options (<= 100 chars; first ~60 show):
