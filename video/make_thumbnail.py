@@ -13,6 +13,8 @@ mix = lambda a, b, t: tuple(int(x + (y - x) * t) for x, y in zip(a, b))
 DAYS = {
     2: dict(white="DevOps Engineer", green="em chestadu?", chips=["Code", "Test", "Deploy", "Monitor"],
             tools="Git  •  Jenkins  •  Docker  •  Kubernetes  •  AWS"),
+    3: dict(white="DevOps", green="Lifecycle", chips=["Plan", "Code", "Build", "Test", "Release", "Deploy", "Operate", "Monitor"],
+            tools=None),
 }
 
 def shadow_text(im, xy, s, font, fill, blur=14, off=8):
@@ -44,19 +46,27 @@ def build(day):
     shadow_text(im, (W // 2, cy + 110), cfg["white"], fit(cfg["white"], 930, 96), WHITE)
     shadow_text(im, (W // 2, cy + 230), cfg["green"], fit(cfg["green"], 930, 112), GREEN)
     d = ImageDraw.Draw(im)
-    n, cw, gap = len(cfg["chips"]), 200, 40
-    x0 = (W - (n * cw + (n - 1) * gap)) // 2
-    for i, s in enumerate(cfg["chips"]):
-        x = x0 + i * (cw + gap)
-        last = i == n - 1
-        d.rounded_rectangle([x, cy + 330, x + cw, cy + 420], 30, fill=GREEN if last else BLACK, outline=GREEN, width=4)
-        d.text((x + cw // 2, cy + 375), s, font=F(38), fill=BLACK if last else WHITE, anchor="mm")
-        if not last:
-            ax = x + cw + gap // 2
-            d.polygon([(ax - 10, cy + 360), (ax + 12, cy + 375), (ax - 10, cy + 390)], fill=GREEN)
-    d.text((W // 2, cy + 500), cfg["tools"], font=F(34), fill=GREY, anchor="mm")
-    d.rounded_rectangle([W // 2 - 230, cy + 560, W // 2 + 230, cy + 640], 40, fill=GREEN)
-    d.text((W // 2, cy + 600), "WATCH NOW", font=M(44), fill=BLACK, anchor="mm")
+    per, cw, gap, y0 = 4, 200, 40, cy + 330
+    chips = cfg["chips"]
+    rows = [chips[i:i + per] for i in range(0, len(chips), per)]
+    for r, row in enumerate(rows):
+        n = len(row)
+        x0 = (W - (n * cw + (n - 1) * gap)) // 2
+        ry = y0 + r * 120
+        for i, s in enumerate(row):
+            x = x0 + i * (cw + gap)
+            final = r == len(rows) - 1 and i == n - 1
+            d.rounded_rectangle([x, ry, x + cw, ry + 90], 30, fill=GREEN if final else BLACK, outline=GREEN, width=4)
+            d.text((x + cw // 2, ry + 45), s, font=F(38), fill=BLACK if final else WHITE, anchor="mm")
+            if i < n - 1:
+                ax = x + cw + gap // 2
+                d.polygon([(ax - 10, ry + 30), (ax + 12, ry + 45), (ax - 10, ry + 60)], fill=GREEN)
+    wy = y0 + len(rows) * 120 + (50 if not cfg["tools"] else 0)
+    if cfg["tools"]:
+        d.text((W // 2, y0 + 170), cfg["tools"], font=F(34), fill=GREY, anchor="mm")
+        wy = y0 + 230
+    d.rounded_rectangle([W // 2 - 230, wy, W // 2 + 230, wy + 80], 40, fill=GREEN)
+    d.text((W // 2, wy + 40), "WATCH NOW", font=M(44), fill=BLACK, anchor="mm")
     return im.convert("RGB")
 
 if __name__ == "__main__":
