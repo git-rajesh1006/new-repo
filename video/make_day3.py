@@ -1,11 +1,11 @@
 """Day 3 (DevOps Lifecycle) video, 1080x1920, black / neon-green palette, synced to a voiceover.
-Usage: python3 make_day3.py voiceover.mp3 out.mp4   (needs Pillow, ffmpeg)
+Usage: python3 make_day3.py voiceover.mp3 day3-sync.json out.mp4   (needs Pillow, ffmpeg)
 
-Sync: sentence windows in SENT were read off the voiceover's pauses (ffmpeg silencedetect).
-Inside a sentence, the detected short pauses split it into speech segments; words are spread
-over those segments by letter count, so every cue/caption is keyed to a word via wt().
+Sync: day3-sync.json (made by align_voiceover.py) holds per-word start times from forced alignment of
+the script against the voiceover, phrase by phrase inside windows measured from the audio's pauses.
+Every visual cue and caption is keyed to a spoken word via wt().
 """
-import math, re, subprocess, sys
+import json, math, subprocess, sys
 from functools import lru_cache
 from PIL import Image, ImageDraw, ImageFont
 
@@ -22,127 +22,51 @@ def lerp(a, b, t): return a + (b - a) * t
 def mix(c1, c2, t): return tuple(int(lerp(a, b, t)) for a, b in zip(c1, c2))
 def pop(t, cue, dur=.45): return ease((t - cue) / dur)
 
-# ---------------- audio sync data ----------------
-SENT = [
- (0.05, 2.91,  "Day 2 lo DevOps Engineer em chestado telusukunnam kada!"),
- (3.67, 7.94,  "Mari oka application idea nunchi users daggariki ela reach avuthundi?"),
- (8.40, 9.96,  "Ade DevOps Lifecycle!"),
- (10.52, 11.76, "First step Plan!"),
- (12.31, 15.83, "Team application lo em features undalo decide chestundi."),
- (16.27, 17.54, "Next Code!"),
- (18.03, 20.79, "Developers application ki kavalsina code write chestaru."),
- (21.25, 22.49, "Next Build!"),
- (22.86, 25.09, "Code ni application ga ready chestaru."),
- (25.49, 26.73, "Tarvata Test!"),
- (27.11, 36.87, "Application lo bugs unnaya, correct ga work avuthunda ani automatic ga test chestaru."),
- (37.26, 38.55, "Next Release!"),
- (38.88, 43.20, "Tested application ni release ki prepare chestaru."),
- (43.54, 52.59, "Deploy ante application ni server or cloud lo install chesi users ki available ga chestaru."),
- (52.96, 56.73, "Application deploy chesaka Operate stage lo application ni run chestaru."),
- (57.02, 61.49, "Monitor stage lo performance, errors, server health ni continuously check chestaru."),
- (61.77, 67.55, "Monitoring lo problem kanipisthe, team feedback teesukoni improvements chestundi."),
- (67.93, 71.40, "Ila ee cycle malli repeat avuthundi!"),
- (71.74, 74.76, "Idi DevOps Lifecycle!"),
- (75.12, 79.12, "Day 4 lo Traditional IT ki DevOps ki madhya difference telusukundam."),
- (79.46, 80.43, "Follow avvandi!"),
-]
-CAPS = {
- 1: ["Day 2 lo DevOps Engineer em chestado telusukunnam kada!"],
- 2: ["Mari oka application idea nunchi", "users daggariki ela reach avuthundi?"],
- 3: ["Ade DevOps Lifecycle!"], 4: ["First step Plan!"],
- 5: ["Team application lo em features", "undalo decide chestundi."],
- 6: ["Next Code!"], 7: ["Developers application ki kavalsina", "code write chestaru."],
- 8: ["Next Build!"], 9: ["Code ni application ga ready chestaru."], 10: ["Tarvata Test!"],
- 11: ["Application lo bugs unnaya,", "correct ga work avuthunda ani", "automatic ga test chestaru."],
- 12: ["Next Release!"], 13: ["Tested application ni", "release ki prepare chestaru."],
- 14: ["Deploy ante application ni", "server or cloud lo install chesi", "users ki available ga chestaru."],
- 15: ["Application deploy chesaka", "Operate stage lo application ni run chestaru."],
- 16: ["Monitor stage lo performance,", "errors, server health ni", "continuously check chestaru."],
- 17: ["Monitoring lo problem kanipisthe,", "team feedback teesukoni", "improvements chestundi."],
- 18: ["Ila ee cycle", "malli repeat avuthundi!"], 19: ["Idi DevOps Lifecycle!"],
- 20: ["Day 4 lo Traditional IT ki", "DevOps ki madhya difference", "telusukundam."],
- 21: ["Follow avvandi!"],
-}
 
-def detect_silences(audio):
-    out = subprocess.run(["ffmpeg", "-hide_banner", "-i", audio, "-af", "silencedetect=noise=-32dB:d=0.1", "-f", "null", "-"],
-                         capture_output=True, text=True).stderr
-    st = [float(x) for x in re.findall(r"silence_start: ([0-9.]+)", out)]
-    en = [float(x) for x in re.findall(r"silence_end: ([0-9.]+)", out)]
-    return list(zip(st, en))
+RED = (255, 95, 95)
+PH = []   # phrases: dict(a, b, text, times)
+def load_sync(path): PH[:] = json.load(open(path))
 
-def _clean(w): return "".join(ch for ch in w.lower() if ch.isalnum())
-
-# tokens per speech segment where the pause pattern clearly shows the phrasing (overrides the automatic split)
-GROUPS = {11: [4, 3, 2, 2, 1, 1], 14: [1, 3, 1, 4, 3, 2, 1], 17: [1, 2, 1, 1, 1, 1, 1, 1]}
-
-def word_times(a, b, text, sil, groups=None):
-    toks = text.split()
-    wts = [len(_clean(w)) + 1 for w in toks]
-    tot = sum(wts)
-    cuts = [a] + [x for s, e in sil if a + .1 < s and e < b - .1 and e - s >= .18 for x in (s, e)] + [b]
-    segs = [(cuts[i], cuts[i + 1]) for i in range(0, len(cuts) - 1, 2)]
-    if groups and len(groups) == len(segs) and sum(groups) == len(toks):
-        out, k = [0.0] * len(toks), 0
-        for (s, e), g in zip(segs, groups):
-            seg = sum(wts[k:k + g])
-            for j in range(k, k + g): out[j] = s + (e - s) * sum(wts[k:j]) / seg
-            k += g
-        return toks, out
-    T = sum(e - s for s, e in segs)
-    bounds, acc = [0], 0.0
-    for s, e in segs[:-1]:
-        acc += e - s
-        k = min(range(1, len(toks)), key=lambda j: abs(sum(wts[:j]) / tot - acc / T)) if len(toks) > 1 else 1
-        last = max(b_ for b_ in bounds if b_ is not None)
-        bounds.append(k if last < k < len(toks) else None)
-    # build groups: a boundary of None merges the segment with the next
-    groups, cur_s, k0 = [], segs[0][0], 0
-    for i, (s, e) in enumerate(segs):
-        kb = bounds[i + 1] if i + 1 < len(segs) else len(toks)
-        if kb is None: continue
-        groups.append((k0, kb, cur_s, e))
-        k0, cur_s = kb, (segs[i + 1][0] if i + 1 < len(segs) else e)
-    out = [0.0] * len(toks)
-    for k0, k1, s, e in groups:
-        seg = sum(wts[k0:k1])
-        for k in range(k0, k1): out[k] = s + (e - s) * sum(wts[k0:k]) / seg
-    return toks, out
-
-WORDS = []
-def init_sync(audio):
-    sil = detect_silences(audio)
-    WORDS[:] = [word_times(a, b, t, sil, GROUPS.get(i + 1)) for i, (a, b, t) in enumerate(SENT)]
-
-def wt(sent, word, occ=0):
-    toks, times = WORDS[sent - 1]
-    k, n = _clean(word), 0
-    for tk, tm in zip(toks, times):
-        if _clean(tk).startswith(k):
+def wt(key, word=None, occ=0):
+    """Start time of `word` in the phrase whose text is `key` (exact match first, else prefix match)."""
+    p = next((q for q in PH if q["text"] == key), None) or next(q for q in PH if q["text"].startswith(key))
+    if word is None: return p["times"][0]
+    toks, n = p["text"].split(), 0
+    for tk, tm in zip(toks, p["times"]):
+        if "".join(ch for ch in tk.lower() if ch.isalnum()).startswith("".join(ch for ch in word.lower() if ch.isalnum())):
             if n == occ: return tm
             n += 1
-    raise KeyError((sent, word))
+    raise KeyError((key, word))
+
+CAPS = {
+ "Day two lo DevOps Engineer em chestado telusukunnam kada!": ["Day two lo DevOps Engineer", "em chestado telusukunnam kada!"],
+ "oka application idea nunchi users daggariki ela reach avuthundi?": ["oka application idea nunchi", "users daggariki ela reach avuthundi?"],
+ "team application lo em features undalo decide chestundi.": ["team application lo em features", "undalo decide chestundi."],
+ "Developers application ki kavalsina code write chestaru.": ["Developers application ki", "kavalsina code write chestaru."],
+ "Code ni complete application ga ready chestaru.": ["Code ni complete application", "ga ready chestaru."],
+ "Application ni release cheyadaniki prepare chestaru.": ["Application ni release", "cheyadaniki prepare chestaru."],
+ "Application ni server or cloud lo deploy chesi users ki available ga chestaru.": ["Application ni server or cloud", "lo deploy chesi users ki", "available ga chestaru."],
+ "Ee cycle repeat avuthu software ni continuously improve chestundi.": ["Ee cycle repeat avuthu", "software ni continuously improve chestundi."],
+ "Idi mana 100 Days of DevOps series lo Day 3!": ["Idi mana 100 Days of DevOps", "series lo Day 3!"],
+ "Repu Day four lo Traditional IT ki DevOps ki madhya difference telusukundam.": ["Repu Day four lo", "Traditional IT ki DevOps", "ki madhya difference telusukundam."],
+}
 
 def caption_events():
     ev = []
-    for si, chunks in CAPS.items():
-        toks, times = WORDS[si - 1]
-        assert sum(len(c.split()) for c in chunks) == len(toks), si
-        k = 0
-        for c in chunks:
-            st = times[k]; k += len(c.split())
-            en = times[k] if k < len(toks) else SENT[si - 1][1] + .2
-            ev.append((st - .05, en, c))
+    for i, p in enumerate(PH):
+        chunks, toks, k = CAPS.get(p["text"], [p["text"]]), p["text"].split(), 0
+        assert sum(len(c.split()) for c in chunks) == len(toks), p["text"]
+        for ci, c in enumerate(chunks):
+            st = p["times"][k]; k += len(c.split())
+            en = p["times"][k] if k < len(toks) else p["b"] + .15
+            if k >= len(toks) and i + 1 < len(PH) and PH[i + 1]["a"] - p["b"] < .5: en = PH[i + 1]["times"][0]   # no flicker over short gaps
+            ev.append((st - .04, en, c))
     return ev
 
 # ---------------- visuals ----------------
-STAGES = [("PLAN", "Features decide chestaru", 4, "Plan"), ("CODE", "Developers code write", 6, "Code"),
-          ("BUILD", "Code → application", 8, "Build"), ("TEST", "Automatic bug checks", 10, "Test"),
-          ("RELEASE", "Tested app ready", 12, "Release"), ("DEPLOY", "Server / Cloud → users", 14, "Deploy"),
-          ("OPERATE", "Application run avuthundi", 15, "Operate"), ("MONITOR", "Performance - errors - health", 16, "Monitor")]
+NAMES = ["PLAN", "CODE", "BUILD", "TEST", "RELEASE", "DEPLOY", "OPERATE", "MONITOR"]
 CX, CY_, R = 540, 940, 370
 ANG = [-90 + i * 45 for i in range(8)]
-
 def ctext(d, xy, s, font, fill, anchor="mm"): d.text(xy, s, font=font, fill=fill, anchor=anchor)
 def rbox(d, box, fill, outline=None, r=36, w=4): d.rounded_rectangle(box, r, fill=fill, outline=outline, width=w)
 def pos(i, r=R): a = math.radians(ANG[i]); return CX + r * math.cos(a), CY_ + r * math.sin(a)
@@ -157,15 +81,38 @@ def background():
         for y in range(0, H, 90): d.line([0, y, W, y], fill=GRID)
     return _bg.copy()
 
-def draw_intro(d, t, al):
+class Cues: pass
+def make_cues():
+    q = Cues()
+    q.ade = wt("Ade DevOps", "Ade")
+    q.p1 = [wt("PLAN!"), wt("CODE!"), wt("BUILD!"), wt("TEST!"), wt("RELEASE!"), wt("DEPLOY!"), wt("OPERATE and", "OPERATE"), wt("OPERATE and", "MONITOR")]
+    q.rec = [wt(n.capitalize() + ("!" if n == "MONITOR" else ",")) for n in NAMES]
+    q.wait, q.prob, q.fb, q.impr = wt("But wait"), wt("Oka problem"), wt("team feedback", "feedback"), wt("team feedback", "improvements")
+    q.rep, q.idi, q.repu = wt("Ee cycle"), wt("Idi mana"), wt("Repu Day")
+    S = [(q.ade, "", "∞", "DevOps Lifecycle", GREEN)]
+    subs = ["Features decide chestundi", "Developers code write chestaru", "Complete application ready",
+            "Automatic bug checks", "Prepare tested application", "Server / Cloud → users",
+            "Application run avuthundi", "Performance • Errors • Health"]
+    for i in range(8): S.append((q.p1[i], f"{i + 1:02d} / 08", NAMES[i], subs[i], GREEN))
+    S += [(wt("Application correct"), "04 / 08", "TEST", "Works correctly?", GREEN), (wt("Bugs emaina"), "04 / 08", "TEST", "Any bugs?", GREEN),
+          (wt("Ani automatic"), "04 / 08", "TEST", "Automatic testing", GREEN), (wt("Tests pass"), "04 / 08", "TEST", "Tests pass ✓", GREEN),
+          (q.wait, "", "BUT WAIT…", "mana pani ikkade aipodu!", WHITE),
+          (wt("Application smooth"), "", "RUNNING?", "smooth ga run avuthunda?", GREEN), (wt("Performance ela"), "", "PERFORMANCE?", "ela undi?", GREEN),
+          (wt("Errors emaina"), "", "ERRORS?", "emaina vasthunnaya?", GREEN), (wt("Veetannitini"), "08 / 08", "MONITOR", "continuously monitor chestaru", GREEN),
+          (q.prob, "", "PROBLEM!", "kanipisthe…", RED), (q.fb, "", "FEEDBACK", "team feedback teesukoni", WHITE),
+          (q.impr, "", "IMPROVE", "improvements chestundi", GREEN), (wt("And that's"), "", "∞", "beauty of DevOps", GREEN)]
+    for i in range(8): S.append((q.rec[i], f"{i + 1:02d} / 08", NAMES[i], "", GREEN))
+    S.append((q.rep, "", "REPEAT", "continuous improvement", GREEN))
+    q.states = sorted(S, key=lambda x: x[0])
+    return q
+
+def draw_intro(d, t, al, q):
     c = lambda col: mix(BG, col, al)
-    # S1: recap chip
-    p = pop(t, wt(1, "Day"))
+    p = pop(t, wt("Day two", "Day"))
     rbox(d, [300, 560, 780, 700], mix(BG, GREEN, .12 * p * al), c(GREEN) if p else BG, 40)
     ctext(d, (540, 630), "DAY 2  ✓", F(80), c(mix(BG, GREEN, p)))
-    ctext(d, (540, 800), "DevOps Engineer", F(70), c(mix(BG, WHITE, pop(t, wt(1, "DevOps")))))
-    # S2: idea -> users
-    pi, pu, pq = pop(t, wt(2, "oka")), pop(t, wt(2, "users")), pop(t, wt(2, "ela"), .3)
+    ctext(d, (540, 800), "DevOps Engineer", F(70), c(mix(BG, WHITE, pop(t, wt("Day two", "DevOps")))))
+    pi, pu, pq = pop(t, wt("oka application", "oka")), pop(t, wt("oka application", "users")), pop(t, wt("oka application", "ela"), .3)
     for cx, lab, p_ in [(250, "IDEA", pi), (830, "USERS", pu)]:
         rbox(d, [cx - 150, 1090, cx + 150, 1210], mix(BG, GREEN, .1 * p_ * al), c(mix(BG, GREEN, p_)), 36)
         ctext(d, (cx, 1150), lab, F(56), c(mix(BG, WHITE, p_)))
@@ -175,76 +122,80 @@ def draw_intro(d, t, al):
             if x < 650: d.ellipse([x - 6, 1144, x + 6, 1156], fill=c(mix(BG, GREEN, pq * .7)))
         ctext(d, (540, 1060), "?", F(90), c(mix(BG, GREEN, pq)))
 
-def stage_cues():
-    return [wt(s, w) for _, _, s, w in STAGES]
-
-def draw_ring(d, t, al, cues):
+def draw_ring(d, t, al, q):
     c = lambda col: mix(BG, col, al)
-    t_ade, t_fb, t_ila, t_idi = wt(3, "Ade"), wt(17, "feedback"), wt(18, "Ila"), wt(19, "Idi")
-    # title
-    ctext(d, (540, 250), "DEVOPS LIFECYCLE", F(68), c(mix(BG, WHITE, pop(t, wt(3, "DevOps"), .5))))
-    # ring track
+    ctext(d, (540, 250), "DEVOPS LIFECYCLE", F(68), c(mix(BG, WHITE, pop(t, wt("Ade DevOps", "DevOps"), .5))))
     box = [CX - R, CY_ - R, CX + R, CY_ + R]
-    ring_p = pop(t, t_ade, .8)
+    ring_p = pop(t, q.ade, .8)
     d.ellipse(box, outline=c(mix(BG, DIM, ring_p)), width=8)
-    # progress arc to the latest active stage (animated)
-    cur = max([i for i, ct in enumerate(cues) if t >= ct], default=-1)
-    if cur >= 0:
-        prev_a = ANG[cur - 1] if cur > 0 else ANG[0]
-        a_end = lerp(prev_a, ANG[cur], ease((t - cues[cur]) / .7)) if cur > 0 else ANG[0]
-        if a_end > -90: d.arc(box, -90, a_end, fill=c(GREEN), width=12)
-    # feedback arc Monitor -> Plan
-    if t >= t_fb:
-        fp = ease((t - t_fb) / 1.6)
+    in_rec, after_rec = q.rec[0] <= t < q.rep, t >= q.rep
+    # which pill is active, and how far the green arc reaches
+    if t < q.prob:
+        cur = max([i for i, ct in enumerate(q.p1) if t >= ct], default=-1); cues = q.p1
+    elif in_rec:
+        cur = max([i for i, ct in enumerate(q.rec) if t >= ct], default=-1); cues = q.rec
+    else:
+        cur = -1; cues = q.p1
+    done_all = (q.prob <= t < q.rec[0]) or after_rec
+    if after_rec: d.ellipse(box, outline=c(GREEN), width=12)
+    elif done_all: d.arc(box, -90, 225, fill=c(GREEN), width=12)
+    elif cur > 0:
+        d.arc(box, -90, lerp(ANG[cur - 1], ANG[cur], ease((t - cues[cur]) / .7)), fill=c(GREEN), width=12)
+    if q.fb <= t < q.rec[0]:
+        fp = ease((t - q.fb) / 1.4)
         d.arc(box, 225, 225 + 45 * fp, fill=c(WHITE), width=12)
         if fp > .9:
-            x, y = pos(0)
-            d.polygon([(x - 18, y - 30), (x + 22, y), (x - 18, y + 30)], fill=c(WHITE))
-    # pills
-    for i, (name, _, _, _) in enumerate(STAGES):
+            x, y = pos(0); d.polygon([(x - 18, y - 30), (x + 22, y), (x - 18, y + 30)], fill=c(WHITE))
+    if after_rec:   # orbiting dot = the cycle repeating
+        a = math.radians(-90 + 360 * (((t - q.rep) / 2.4) % 1))
+        x, y = CX + R * math.cos(a), CY_ + R * math.sin(a)
+        d.ellipse([x - 20, y - 20, x + 20, y + 20], fill=c(WHITE))
+    for i, name in enumerate(NAMES):
         x, y = pos(i)
-        stag = ease((t - t_ade - .15 * i) / .4)
-        active = (cues[i] <= t) and (i == cur) and t < t_fb
-        done = cues[i] <= t and not active
-        sc = 1 + (.12 * (1 - ease((t - cues[i]) / .4)) if cues[i] <= t else 0)
+        stag = ease((t - q.ade - .15 * i) / .4)
+        active = i == cur and not done_all and not after_rec
+        done = (cues[i] <= t and not active) if cur >= 0 else False
+        if done_all or after_rec or (in_rec and not active): done = True
+        hint = q.wait <= t < q.p1[6] and i >= 6     # "but wait…": the next stages beckon
+        sc = 1 + (.12 * (1 - ease((t - cues[i]) / .4)) if active else 0)
         pw, ph = 100 * sc, 44 * sc
         if active:
-            rbox(d, [x - pw, y - ph, x + pw, y + ph], c(GREEN), None, 30)
-            ctext(d, (x, y), name, F(int(34 * sc)), c(BG))
+            rbox(d, [x - pw, y - ph, x + pw, y + ph], c(GREEN), None, 30); ctext(d, (x, y), name, F(int(34 * sc)), c(BG))
         else:
-            col = GREEN if done else DIM
+            col = WHITE if hint and int(t * 4) % 2 == 0 else (GREEN if done else DIM)
             rbox(d, [x - pw, y - ph, x + pw, y + ph], c(BG), c(mix(BG, col, stag)), 30, 4)
-            ctext(d, (x, y), name, F(34), c(mix(BG, WHITE if done else GREY, stag)))
-    # centre text
-    idx = cur
-    if t >= t_idi:
-        ctext(d, (CX, CY_ - 40), "∞", F(150), c(GREEN)); ctext(d, (CX, CY_ + 70), "DevOps Lifecycle", F(44), c(WHITE))
-    elif t >= t_ila:
-        pu = 1 + .05 * math.sin(t * 7)
-        ctext(d, (CX, CY_ - 40), "REPEAT", F(int(92 * pu)), c(GREEN)); ctext(d, (CX, CY_ + 70), "cycle malli repeat avuthundi", F(34), c(WHITE))
-    elif t >= t_fb:
-        ctext(d, (CX, CY_ - 40), "FEEDBACK", F(84), c(WHITE)); ctext(d, (CX, CY_ + 70), "problem → improvements", F(36), c(GREEN))
-    elif idx >= 0:
-        n, desc = STAGES[idx][0], STAGES[idx][1]
-        p = ease((t - cues[idx]) / .35)
-        ctext(d, (CX, CY_ - 120), f"{idx + 1:02d} / 08", M(40), c(mix(BG, GREY, p)))
-        ctext(d, (CX, CY_ - 30), n, F(100 if len(n) < 7 else 84), c(mix(BG, GREEN, p)))
-        ctext(d, (CX, CY_ + 70), desc, F(36), c(mix(BG, WHITE, p)))
-    elif ring_p:
-        ctext(d, (CX, CY_), "∞", F(140), c(mix(BG, GREEN, ring_p)))
+            ctext(d, (x, y), name, F(34), c(mix(BG, WHITE if (done or hint) else GREY, stag)))
+    st = [s for s in q.states if s[0] <= t]
+    if st:
+        ts, num, big, sub, col = st[-1]
+        p = ease((t - ts) / .3)
+        if num: ctext(d, (CX, CY_ - 120), num, M(40), c(mix(BG, GREY, p)))
+        size = 100 if len(big) < 7 else 84 if len(big) < 9 else 64 if len(big) < 11 else 52
+        if big == "∞": size = 150
+        ctext(d, (CX, CY_ - (40 if not num else 30)), big, F(size), c(mix(BG, col, p)))
+        if sub: ctext(d, (CX, CY_ + 70), sub, F(36), c(mix(BG, WHITE, p)))
 
-def draw_outro(d, t, al):
+def draw_card3(d, t, al, q):
     c = lambda col: mix(BG, col, al)
-    p = pop(t, wt(20, "Day"), .5)
+    ctext(d, (540, 760), "DAY 3  ✓", F(190), c(mix(BG, WHITE, pop(t, wt("Idi mana", "Day"), .5))))
+    pb = pop(t, wt("Idi mana", "100"), .5)
+    ctext(d, (540, 960), "100 DAYS OF DEVOPS", F(48), c(mix(BG, GREEN, pb)))
+    rbox(d, [140, 1030, 940, 1070], c(mix(BG, DIM, pb)), None, 20)
+    rbox(d, [140, 1030, 140 + 800 * .03 * ease((t - wt("Idi mana", "Day")) / 1.0) + 40, 1070], c(GREEN), None, 20) if pb else None
+    ctext(d, (540, 1130), "3 / 100", M(44), c(mix(BG, GREY, pb)))
+
+def draw_card4(d, t, al, q):
+    c = lambda col: mix(BG, col, al)
+    p = pop(t, wt("Repu Day", "Day"), .5)
     ctext(d, (540, 700), "DAY 4", F(220), c(mix(BG, WHITE, p)))
-    ctext(d, (540, 900), "Traditional IT", F(80), c(mix(BG, WHITE, pop(t, wt(20, "Traditional")))))
-    ctext(d, (540, 1000), "vs", F(50), c(mix(BG, GREY, pop(t, wt(20, "DevOps")))))
-    ctext(d, (540, 1110), "DevOps", F(110), c(mix(BG, GREEN, pop(t, wt(20, "DevOps")))))
-    pf = pop(t, wt(20, "difference"), .5)
-    hit = pop(t, wt(21, "Follow"), .25)
+    ctext(d, (540, 900), "Traditional IT", F(80), c(mix(BG, WHITE, pop(t, wt("Repu Day", "Traditional")))))
+    ctext(d, (540, 1000), "vs", F(50), c(mix(BG, GREY, pop(t, wt("Repu Day", "DevOps")))))
+    ctext(d, (540, 1110), "DevOps", F(110), c(mix(BG, GREEN, pop(t, wt("Repu Day", "DevOps")))))
+    pf = pop(t, wt("Repu Day", "difference"), .5)
+    hit = pop(t, wt("Follow"), .25)
     w = 300 * (1 + .1 * hit + .02 * math.sin(t * 6))
     rbox(d, [540 - w, 1260, 540 + w, 1380], mix(BG, GREEN, pf * al), None, 60)
-    ctext(d, (540, 1320), "FOLLOW", M(64), c(mix(BG, BG if False else (0, 0, 0), 1) if pf > .5 else BG))
+    ctext(d, (540, 1320), "FOLLOW", M(64), (0, 0, 0) if pf > .5 else BG)
 
 def caption(d, t, events):
     for a, b, c in events:
@@ -261,12 +212,12 @@ def caption(d, t, events):
                 ctext(d, (W / 2, top + 55 + k * 70), o, F(46), WHITE)
             return
 
-def main(audio, out):
-    init_sync(audio)
+def main(audio, sync, out):
+    load_sync(sync)
     dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", audio],
                                capture_output=True, text=True).stdout)
-    events, cues = caption_events(), stage_cues()
-    t_ring_in, t_out = wt(3, "Ade"), wt(20, "Day")
+    events, q = caption_events(), make_cues()
+    ring_in, ring_out, card4_in = q.ade - .2, q.idi - .1, q.repu - .1
     p = subprocess.Popen(["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}",
                           "-r", str(FPS), "-i", "-", "-i", audio, "-map", "0:v", "-map", "1:a",
                           "-c:v", "libx264", "-pix_fmt", "yuv420p", "-preset", "fast", "-crf", "20",
@@ -274,9 +225,11 @@ def main(audio, out):
     for fi in range(int(math.ceil(dur * FPS))):
         t = fi / FPS
         im = background(); d = ImageDraw.Draw(im)
-        if t < t_ring_in + .1: draw_intro(d, t, 1 - ease((t - (t_ring_in - .15)) / .3))
-        if t_ring_in - .2 <= t < t_out + .3: draw_ring(d, t, min(ease((t - (t_ring_in - .2)) / .3), 1 - ease((t - (t_out - .1)) / .4)), cues)
-        if t >= t_out - .1: draw_outro(d, t, ease((t - (t_out + .3)) / .4))
+        fade = lambda a, b: ease((t - a) / .3) * (1 - ease((t - b) / .3))
+        if t < q.ade + .1: draw_intro(d, t, 1 - ease((t - (q.ade - .15)) / .3), q)
+        if ring_in <= t < ring_out + .4: draw_ring(d, t, fade(ring_in, ring_out), q)
+        if ring_out <= t < card4_in + .4: draw_card3(d, t, fade(ring_out + .2, card4_in), q)
+        if t >= card4_in: draw_card4(d, t, ease((t - (card4_in + .3)) / .3), q)
         d.rectangle([0, 0, W * t / dur, 12], fill=GREEN)
         ctext(d, (W / 2, 70), "100 DAYS OF DEVOPS", M(30), GREY)
         caption(d, t, events)
@@ -284,4 +237,4 @@ def main(audio, out):
     p.stdin.close(); p.wait()
 
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2])
+    main(sys.argv[1], sys.argv[2], sys.argv[3])

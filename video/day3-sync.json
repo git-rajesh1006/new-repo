@@ -1,0 +1,560 @@
+[
+ {
+  "a": 0.05,
+  "b": 2.91,
+  "text": "Day two lo DevOps Engineer em chestado telusukunnam kada!",
+  "times": [
+   0.16,
+   0.39,
+   0.56,
+   0.66,
+   1.18,
+   1.49,
+   1.61,
+   2.04,
+   2.55
+  ],
+  "aligned": true
+ },
+ {
+  "a": 3.67,
+  "b": 4.03,
+  "text": "Mari...",
+  "times": [
+   3.67
+  ],
+  "aligned": true
+ },
+ {
+  "a": 4.31,
+  "b": 7.94,
+  "text": "oka application idea nunchi users daggariki ela reach avuthundi?",
+  "times": [
+   4.31,
+   4.49,
+   5.22,
+   5.49,
+   6.02,
+   6.56,
+   7.06,
+   7.34,
+   7.539999999999999
+  ],
+  "aligned": true
+ },
+ {
+  "a": 8.4,
+  "b": 9.96,
+  "text": "Ade DevOps Lifecycle!",
+  "times": [
+   8.58,
+   8.95,
+   9.39
+  ],
+  "aligned": true
+ },
+ {
+  "a": 10.52,
+  "b": 11.1,
+  "text": "First step...",
+  "times": [
+   10.52,
+   10.739999999999998
+  ],
+  "aligned": true
+ },
+ {
+  "a": 11.38,
+  "b": 11.76,
+  "text": "PLAN!",
+  "times": [
+   11.38
+  ],
+  "aligned": true
+ },
+ {
+  "a": 12.31,
+  "b": 12.98,
+  "text": "Ee stage lo",
+  "times": [
+   12.31,
+   12.44,
+   12.77
+  ],
+  "aligned": true
+ },
+ {
+  "a": 13.17,
+  "b": 15.83,
+  "text": "team application lo em features undalo decide chestundi.",
+  "times": [
+   13.17,
+   13.379999999999999,
+   13.959999999999999,
+   14.049999999999999,
+   14.44,
+   14.799999999999999,
+   15.1,
+   15.43
+  ],
+  "aligned": true
+ },
+ {
+  "a": 16.27,
+  "b": 16.69,
+  "text": "Next...",
+  "times": [
+   16.27
+  ],
+  "aligned": true
+ },
+ {
+  "a": 17.06,
+  "b": 17.54,
+  "text": "CODE!",
+  "times": [
+   17.06
+  ],
+  "aligned": true
+ },
+ {
+  "a": 18.03,
+  "b": 20.79,
+  "text": "Developers application ki kavalsina code write chestaru.",
+  "times": [
+   18.03,
+   18.650000000000002,
+   19.27,
+   19.37,
+   19.86,
+   20.19,
+   20.4
+  ],
+  "aligned": true
+ },
+ {
+  "a": 21.25,
+  "b": 21.65,
+  "text": "Next...",
+  "times": [
+   21.25
+  ],
+  "aligned": false
+ },
+ {
+  "a": 22.08,
+  "b": 22.49,
+  "text": "BUILD!",
+  "times": [
+   22.08
+  ],
+  "aligned": true
+ },
+ {
+  "a": 22.86,
+  "b": 25.09,
+  "text": "Code ni complete application ga ready chestaru.",
+  "times": [
+   22.86,
+   23.099999999999998,
+   23.34,
+   23.88,
+   24.41,
+   24.509999999999998,
+   24.709999999999997
+  ],
+  "aligned": true
+ },
+ {
+  "a": 25.49,
+  "b": 25.99,
+  "text": "Tarvata...",
+  "times": [
+   25.49
+  ],
+  "aligned": true
+ },
+ {
+  "a": 26.27,
+  "b": 26.73,
+  "text": "TEST!",
+  "times": [
+   26.27
+  ],
+  "aligned": true
+ },
+ {
+  "a": 27.11,
+  "b": 28.8,
+  "text": "Application correct ga work avuthunda?",
+  "times": [
+   27.11,
+   27.669999999999998,
+   28.029999999999998,
+   28.15,
+   28.39
+  ],
+  "aligned": true
+ },
+ {
+  "a": 29.23,
+  "b": 30.07,
+  "text": "Bugs emaina unnaya?",
+  "times": [
+   29.23,
+   29.451052631578946,
+   29.760526315789473
+  ],
+  "aligned": false
+ },
+ {
+  "a": 30.39,
+  "b": 31.92,
+  "text": "Ani automatic ga test chestaru.",
+  "times": [
+   30.39,
+   30.55,
+   31.21,
+   31.33,
+   31.58
+  ],
+  "aligned": true
+ },
+ {
+  "a": 32.33,
+  "b": 33.41,
+  "text": "Tests pass ayyaka...",
+  "times": [
+   32.33,
+   32.61,
+   32.89
+  ],
+  "aligned": true
+ },
+ {
+  "a": 33.67,
+  "b": 34.39,
+  "text": "RELEASE!",
+  "times": [
+   33.67
+  ],
+  "aligned": true
+ },
+ {
+  "a": 34.71,
+  "b": 36.87,
+  "text": "Application ni release cheyadaniki prepare chestaru.",
+  "times": [
+   34.71,
+   35.27,
+   35.39,
+   35.660000000000004,
+   36.120000000000005,
+   36.45
+  ],
+  "aligned": true
+ },
+ {
+  "a": 37.26,
+  "b": 37.64,
+  "text": "Next...",
+  "times": [
+   37.26
+  ],
+  "aligned": false
+ },
+ {
+  "a": 37.98,
+  "b": 38.55,
+  "text": "DEPLOY!",
+  "times": [
+   37.98
+  ],
+  "aligned": true
+ },
+ {
+  "a": 38.88,
+  "b": 43.2,
+  "text": "Application ni server or cloud lo deploy chesi users ki available ga chestaru.",
+  "times": [
+   38.88,
+   39.480000000000004,
+   39.61000000000001,
+   40.02,
+   40.28000000000001,
+   40.650000000000006,
+   40.730000000000004,
+   41.09,
+   41.550000000000004,
+   42.06,
+   42.25000000000001,
+   42.68000000000001,
+   42.790000000000006
+  ],
+  "aligned": true
+ },
+ {
+  "a": 43.54,
+  "b": 44.01,
+  "text": "But wait...",
+  "times": [
+   43.54,
+   43.63
+  ],
+  "aligned": true
+ },
+ {
+  "a": 44.41,
+  "b": 45.56,
+  "text": "mana pani ikkade aipodu!",
+  "times": [
+   44.41,
+   44.6,
+   44.87,
+   45.269999999999996
+  ],
+  "aligned": true
+ },
+ {
+  "a": 46.02,
+  "b": 46.43,
+  "text": "Next...",
+  "times": [
+   46.02
+  ],
+  "aligned": false
+ },
+ {
+  "a": 46.72,
+  "b": 48.06,
+  "text": "OPERATE and MONITOR!",
+  "times": [
+   46.72,
+   47.27,
+   47.49
+  ],
+  "aligned": true
+ },
+ {
+  "a": 48.4,
+  "b": 50.01,
+  "text": "Application smooth ga run avuthunda?",
+  "times": [
+   48.4,
+   48.95,
+   49.27,
+   49.47,
+   49.64
+  ],
+  "aligned": true
+ },
+ {
+  "a": 50.37,
+  "b": 51.26,
+  "text": "Performance ela undi?",
+  "times": [
+   50.37,
+   50.79,
+   51.01
+  ],
+  "aligned": true
+ },
+ {
+  "a": 51.56,
+  "b": 52.59,
+  "text": "Errors emaina vasthunnaya?",
+  "times": [
+   51.56,
+   51.85000000000001,
+   52.10000000000001
+  ],
+  "aligned": true
+ },
+ {
+  "a": 52.96,
+  "b": 55.33,
+  "text": "Veetannitini continuously monitor chestaru.",
+  "times": [
+   52.96,
+   53.690000000000005,
+   54.540000000000006,
+   54.910000000000004
+  ],
+  "aligned": true
+ },
+ {
+  "a": 55.67,
+  "b": 56.73,
+  "text": "Oka problem kanipisthe...",
+  "times": [
+   55.67,
+   55.800000000000004,
+   56.2
+  ],
+  "aligned": true
+ },
+ {
+  "a": 57.02,
+  "b": 59.1,
+  "text": "team feedback teesukoni improvements chestundi.",
+  "times": [
+   57.02,
+   57.220000000000006,
+   57.660000000000004,
+   58.07000000000001,
+   58.67000000000001
+  ],
+  "aligned": true
+ },
+ {
+  "a": 59.39,
+  "b": 61.49,
+  "text": "And that's the beauty of DevOps!",
+  "times": [
+   59.39,
+   59.690000000000005,
+   60.02,
+   60.160000000000004,
+   60.7,
+   60.89
+  ],
+  "aligned": true
+ },
+ {
+  "a": 61.77,
+  "b": 62.28,
+  "text": "Plan,",
+  "times": [
+   61.77
+  ],
+  "aligned": true
+ },
+ {
+  "a": 62.59,
+  "b": 63.05,
+  "text": "Code,",
+  "times": [
+   62.59
+  ],
+  "aligned": true
+ },
+ {
+  "a": 63.42,
+  "b": 63.79,
+  "text": "Build,",
+  "times": [
+   63.42
+  ],
+  "aligned": true
+ },
+ {
+  "a": 64.11,
+  "b": 64.51,
+  "text": "Test,",
+  "times": [
+   64.11
+  ],
+  "aligned": true
+ },
+ {
+  "a": 64.76,
+  "b": 65.29,
+  "text": "Release,",
+  "times": [
+   64.76
+  ],
+  "aligned": true
+ },
+ {
+  "a": 65.53,
+  "b": 66.07,
+  "text": "Deploy,",
+  "times": [
+   65.53
+  ],
+  "aligned": true
+ },
+ {
+  "a": 66.31,
+  "b": 66.82,
+  "text": "Operate,",
+  "times": [
+   66.31
+  ],
+  "aligned": false
+ },
+ {
+  "a": 67.0,
+  "b": 67.55,
+  "text": "Monitor!",
+  "times": [
+   67.0
+  ],
+  "aligned": true
+ },
+ {
+  "a": 67.93,
+  "b": 71.4,
+  "text": "Ee cycle repeat avuthu software ni continuously improve chestundi.",
+  "times": [
+   67.93,
+   68.08000000000001,
+   68.47000000000001,
+   68.85000000000001,
+   69.17000000000002,
+   69.72000000000001,
+   69.93,
+   70.68,
+   70.97000000000001
+  ],
+  "aligned": true
+ },
+ {
+  "a": 71.74,
+  "b": 74.76,
+  "text": "Idi mana 100 Days of DevOps series lo Day 3!",
+  "times": [
+   71.74,
+   72.01454545454546,
+   72.35772727272727,
+   72.63227272727272,
+   72.97545454545454,
+   73.18136363636364,
+   73.66181818181818,
+   74.14227272727273,
+   74.34818181818183,
+   74.62272727272727
+  ],
+  "aligned": false
+ },
+ {
+  "a": 75.12,
+  "b": 79.12,
+  "text": "Repu Day four lo Traditional IT ki DevOps ki madhya difference telusukundam.",
+  "times": [
+   75.12,
+   75.4,
+   75.68,
+   75.99000000000001,
+   76.19000000000001,
+   76.80000000000001,
+   76.97000000000001,
+   77.30000000000001,
+   77.80000000000001,
+   77.9,
+   78.19000000000001,
+   78.63000000000001
+  ],
+  "aligned": true
+ },
+ {
+  "a": 79.46,
+  "b": 80.43,
+  "text": "Follow avvandi!",
+  "times": [
+   79.46,
+   79.7
+  ],
+  "aligned": true
+ }
+]

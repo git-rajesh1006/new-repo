@@ -1,31 +1,53 @@
-# Day 3 — DevOps Lifecycle 🚀
+# Day 3 — DevOps Lifecycle
 
-100 Days of DevOps · YouTube Shorts · 55–60 seconds
+100 Days of DevOps · Reel/Short · ~80 seconds (voiceover: Prasad – Calm, Proud, Deep)
 
-**[0–5 sec — HOOK]**
+Day two lo DevOps Engineer em chestado telusukunnam kada!
 
-"Day 2 lo DevOps Engineer em chestado telusukunnam kada! Mari oka application idea nunchi users daggariki ela reach avuthundi? Ade DevOps Lifecycle!"
+Mari... oka application idea nunchi users daggariki ela reach avuthundi? **Ade DevOps Lifecycle!**
 
-**[5–15 sec — PLAN & CODE]**
+First step... **PLAN!**
 
-"First step Plan! Team application lo em features undalo decide chestundi. Next Code! Developers application ki kavalsina code write chestaru."
+Ee stage lo team application lo em features undalo decide chestundi.
 
-**[15–25 sec — BUILD & TEST]**
+Next... **CODE!**
 
-"Next Build! Code ni application ga ready chestaru. Tarvata Test! Application lo bugs unnaya, correct ga work avuthunda ani automatic ga test chestaru."
+Developers application ki kavalsina code write chestaru.
 
-**[25–37 sec — RELEASE & DEPLOY]**
+Next... **BUILD!**
 
-"Next Release! Tested application ni release ki prepare chestaru. Deploy ante application ni server or cloud lo install chesi users ki available ga chestaru."
+Code ni complete application ga ready chestaru.
 
-**[37–47 sec — OPERATE & MONITOR]**
+Tarvata... **TEST!**
 
-"Application deploy chesaka Operate stage lo application ni run chestaru. Monitor stage lo performance, errors, server health ni continuously check chestaru."
+Application correct ga work avuthunda? Bugs emaina unnaya? Ani automatic ga test chestaru.
 
-**[47–55 sec — CONTINUOUS FEEDBACK]**
+Tests pass ayyaka... **RELEASE!**
 
-"Monitoring lo problem kanipisthe, team feedback teesukoni improvements chestundi. Ila ee cycle malli repeat avuthundi!"
+Application ni release cheyadaniki prepare chestaru.
 
-**[55–60 sec — CTA]**
+Next... **DEPLOY!**
 
-"Idi DevOps Lifecycle! Day 4 lo Traditional IT ki DevOps ki madhya difference telusukundam. Follow avvandi!"
+Application ni server or cloud lo deploy chesi users ki available ga chestaru.
+
+But wait... **mana pani ikkade aipodu!**
+
+Next... **OPERATE and MONITOR!**
+
+Application smooth ga run avuthunda? Performance ela undi? Errors emaina vasthunnaya?
+
+Veetannitini continuously monitor chestaru.
+
+Oka problem kanipisthe... team feedback teesukoni improvements chestundi.
+
+And that's the beauty of DevOps!
+
+**Plan, Code, Build, Test, Release, Deploy, Operate, Monitor!**
+
+Ee cycle repeat avuthu software ni continuously improve chestundi.
+
+Idi mana **100 Days of DevOps series lo Day 3!**
+
+Repu Day four lo Traditional IT ki DevOps ki madhya difference telusukundam.
+
+Follow avvandi!
