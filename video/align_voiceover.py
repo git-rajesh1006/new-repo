@@ -1,14 +1,15 @@
 """Forced-align every phrase of day3_phrases.py against the voiceover with pocketsphinx and write
-day3-sync.json: [{"a","b","text","times":[start per script token]}].
-Usage: python3 align_voiceover.py voiceover.mp3 day3-sync.json   (needs pocketsphinx, ffmpeg)
+<out>.json: [{"a","b","text","times":[start per script token]}].
+Usage: python3 align_voiceover.py <phrases_module> voiceover.mp3 out.json   e.g. day4_phrases day4-voiceover.mp3 day4-sync.json
+(needs pocketsphinx, ffmpeg)
 Telugu words get a rule-based pronunciation; the alignment is per phrase, so a few tenths of
 a second of error at most, and each phrase is clamped inside its measured speech window."""
 import json, re, subprocess, sys, tempfile, wave
 from pocketsphinx import Decoder, Config, get_model_path
-from day3_phrases import PHRASES
+import importlib
 
-SPOKEN = {"100": "one hundred", "3": "three", "2": "two", "4": "four", "devops": "devops"}
-EXTRA = {"devops": "D EH V AA P S", "lifecycle": "L AY F S AY K AH L"}
+SPOKEN = {"100": "one hundred", "2": "two", "3": "three", "4": "four", "5": "five", "it": "i t", "cicd": "c i c d"}
+EXTRA = {"devops": "D EH V AA P S", "lifecycle": "L AY F S AY K AH L", "github": "G IH T HH AH B"}
 M = {'ch': ['CH'], 'th': ['T', 'HH'], 'sh': ['SH'], 'kh': ['K', 'HH'], 'dh': ['D', 'HH'], 'ee': ['IY'], 'oo': ['UW'], 'ai': ['AY'], 'au': ['AW'], 'aa': ['AA']}
 C = {'b': 'B', 'c': 'K', 'd': 'D', 'f': 'F', 'g': 'G', 'h': 'HH', 'j': 'JH', 'k': 'K', 'l': 'L', 'm': 'M', 'n': 'N', 'p': 'P', 'q': 'K', 'r': 'R', 's': 'S', 't': 'T', 'v': 'V', 'w': 'W', 'x': 'K S', 'y': 'Y', 'z': 'Z'}
 V = {'a': 'AA', 'e': 'EH', 'i': 'IH', 'o': 'OW', 'u': 'UH'}
@@ -24,7 +25,8 @@ def g2p(word):
 
 def clean(w): return re.sub(r"[^A-Za-z0-9']", "", w)
 
-def main(audio, out):
+def main(phrases_mod, audio, out):
+    PHRASES = importlib.import_module(phrases_mod).PHRASES
     with tempfile.TemporaryDirectory() as td:
         wav = td + "/a.wav"
         subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", audio, "-ac", "1", "-ar", "16000", wav], check=True)
@@ -43,25 +45,28 @@ def main(audio, out):
             if dec.lookup_word(sw) is None or sw in EXTRA and sw not in added:
                 if dec.lookup_word(sw) is None: dec.add_word(sw, EXTRA.get(sw) or " ".join(g2p(sw)), update=False)
                 added.add(sw)
-        times, ok = [None] * len(toks), True
-        try:
-            dec.set_align_text(" ".join(spoken))
-            dec.start_utt(); dec.process_raw(pcm[int((a - .05) * sr) * 2:int((b + .05) * sr) * 2], full_utt=True); dec.end_utt()
-            segs = [s for s in dec.seg() if not s.word.startswith("<") and s.word != "(NULL)"]
-            assert len(segs) == len(spoken)
-            for sg, ti in zip(segs, owner):
-                st = a - .05 + sg.start_frame / 100
-                if times[ti] is None: times[ti] = st
-        except Exception as e:
-            ok = False
+        times, ok = [None] * len(toks), False
+        for pad in (.05, .2, .4, .1):   # retry with more context if the aligner rejects the window
+            try:
+                dec.set_align_text(" ".join(spoken))
+                dec.start_utt(); dec.process_raw(pcm[int(max(0, a - pad) * sr) * 2:int((b + pad) * sr) * 2], full_utt=True); dec.end_utt()
+                segs = [s for s in dec.seg() if not s.word.startswith("<") and s.word != "(NULL)"]
+                assert len(segs) == len(spoken)
+                times = [None] * len(toks)
+                for sg, ti in zip(segs, owner):
+                    if times[ti] is None: times[ti] = max(0, a - pad) + sg.start_frame / 100
+                ok = True; break
+            except Exception:
+                continue
         if not ok:      # fall back to letter-proportional timing inside the window
             tot = sum(len(clean(t)) + 1 for t in toks); acc = 0
             for i, t in enumerate(toks):
                 times[i] = a + (b - a) * acc / tot; acc += len(clean(t)) + 1
+        times[0] = a   # speech starts exactly at the measured window start
         times = [min(max(t, a), b) for t in times]
         for i in range(1, len(times)): times[i] = max(times[i], times[i - 1] + .03)
         res.append(dict(a=a, b=b, text=text, times=times, aligned=ok))
     json.dump(res, open(out, "w"), indent=1)
 
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2])
+    main(sys.argv[1], sys.argv[2], sys.argv[3])

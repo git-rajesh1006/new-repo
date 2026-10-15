@@ -13,6 +13,7 @@ mix = lambda a, b, t: tuple(int(x + (y - x) * t) for x, y in zip(a, b))
 DAYS = {
     2: dict(white="DevOps Engineer", green="em chestadu?", chips=["Code", "Test", "Deploy", "Monitor"],
             tools="Git  •  Jenkins  •  Docker  •  Kubernetes  •  AWS"),
+    4: dict(white="Traditional IT", green="vs DevOps", chips=["Collaboration", "Automation", "Improvement"], tools=None, cw=300, cf=34, per=3),
     3: dict(white="DevOps", green="Lifecycle", chips=["Plan", "Code", "Build", "Test", "Release", "Deploy", "Operate", "Monitor"],
             tools=None),
 }
@@ -46,7 +47,7 @@ def build(day):
     shadow_text(im, (W // 2, cy + 110), cfg["white"], fit(cfg["white"], 930, 96), WHITE)
     shadow_text(im, (W // 2, cy + 230), cfg["green"], fit(cfg["green"], 930, 112), GREEN)
     d = ImageDraw.Draw(im)
-    per, cw, gap, y0 = 4, 200, 40, cy + 330
+    per, cw, gap, y0 = cfg.get("per", 4), cfg.get("cw", 200), 40, cy + 330
     chips = cfg["chips"]
     rows = [chips[i:i + per] for i in range(0, len(chips), per)]
     for r, row in enumerate(rows):
@@ -57,7 +58,7 @@ def build(day):
             x = x0 + i * (cw + gap)
             final = r == len(rows) - 1 and i == n - 1
             d.rounded_rectangle([x, ry, x + cw, ry + 90], 30, fill=GREEN if final else BLACK, outline=GREEN, width=4)
-            d.text((x + cw // 2, ry + 45), s, font=F(38), fill=BLACK if final else WHITE, anchor="mm")
+            d.text((x + cw // 2, ry + 45), s, font=F(cfg.get("cf", 38)), fill=BLACK if final else WHITE, anchor="mm")
             if i < n - 1:
                 ax = x + cw + gap // 2
                 d.polygon([(ax - 10, ry + 30), (ax + 12, ry + 45), (ax - 10, ry + 60)], fill=GREEN)
