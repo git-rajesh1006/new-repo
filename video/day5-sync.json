@@ -1,0 +1,437 @@
+[
+ {
+  "a": 0.05,
+  "b": 4.37,
+  "text": "Day 4 lo Traditional IT ki DevOps ki madhya difference telusukunnam kada!",
+  "times": [
+   0.05,
+   0.38,
+   0.62,
+   0.9,
+   1.52,
+   1.93,
+   2.13,
+   2.59,
+   2.7,
+   3.09,
+   3.49,
+   3.96
+  ],
+  "aligned": true
+ },
+ {
+  "a": 4.87,
+  "b": 6.64,
+  "text": "Mari ippudu oka important question\u2026",
+  "times": [
+   4.87,
+   5.050000000000001,
+   5.470000000000001,
+   5.7700000000000005,
+   6.2700000000000005
+  ],
+  "aligned": true
+ },
+ {
+  "a": 7.24,
+  "b": 8.26,
+  "text": "Agile ante enti?",
+  "times": [
+   7.24,
+   7.49,
+   7.86
+  ],
+  "aligned": true
+ },
+ {
+  "a": 8.66,
+  "b": 10.54,
+  "text": "DevOps tho daniki connection enti?",
+  "times": [
+   8.66,
+   9.17,
+   9.479999999999999,
+   9.83,
+   10.299999999999999
+  ],
+  "aligned": true
+ },
+ {
+  "a": 11.1,
+  "b": 14.9,
+  "text": "Agile ante software development ni small-small steps lo divide chesi,",
+  "times": [
+   11.1,
+   11.299999999999999,
+   11.79,
+   12.34,
+   12.909999999999998,
+   13.09,
+   13.759999999999998,
+   14.079999999999998,
+   14.19,
+   14.53
+  ],
+  "aligned": true
+ },
+ {
+  "a": 15.16,
+  "b": 17.93,
+  "text": "frequent ga feedback teesukuntu improve chese approach!",
+  "times": [
+   15.16,
+   15.639999999999999,
+   15.729999999999999,
+   16.2,
+   16.79,
+   17.15,
+   17.439999999999998
+  ],
+  "aligned": true
+ },
+ {
+  "a": 18.38,
+  "b": 19.15,
+  "text": "Example ki,",
+  "times": [
+   18.38,
+   18.81
+  ],
+  "aligned": true
+ },
+ {
+  "a": 19.34,
+  "b": 22.5,
+  "text": "oka team oka big application ni okesari develop cheyakunda,",
+  "times": [
+   19.34,
+   19.5,
+   19.869999999999997,
+   20.08,
+   20.38,
+   20.96,
+   21.09,
+   21.68,
+   21.95
+  ],
+  "aligned": true
+ },
+ {
+  "a": 22.75,
+  "b": 24.41,
+  "text": "small features ga divide chestundi.",
+  "times": [
+   22.75,
+   23.14,
+   23.58,
+   23.689999999999998,
+   23.98
+  ],
+  "aligned": true
+ },
+ {
+  "a": 24.84,
+  "b": 26.42,
+  "text": "Prathi feature ni develop chesi,",
+  "times": [
+   24.84,
+   25.15,
+   25.509999999999998,
+   25.64,
+   26.02
+  ],
+  "aligned": true
+ },
+ {
+  "a": 26.65,
+  "b": 27.28,
+  "text": "test chesi,",
+  "times": [
+   26.65,
+   26.86
+  ],
+  "aligned": true
+ },
+ {
+  "a": 27.52,
+  "b": 29.53,
+  "text": "user feedback batti improvements chestundi.",
+  "times": [
+   27.52,
+   27.82,
+   28.23,
+   28.48,
+   29.11
+  ],
+  "aligned": true
+ },
+ {
+  "a": 30.03,
+  "b": 32.09,
+  "text": "Ippudu DevOps ekkada use avuthundi?",
+  "times": [
+   30.03,
+   30.61,
+   31.12,
+   31.4,
+   31.63
+  ],
+  "aligned": true
+ },
+ {
+  "a": 32.53,
+  "b": 36.17,
+  "text": "Agile development process ni fast and flexible ga cheyadaniki help chesthe,",
+  "times": [
+   32.53,
+   32.74,
+   33.330000000000005,
+   33.75000000000001,
+   33.870000000000005,
+   34.38,
+   34.50000000000001,
+   34.99,
+   35.1,
+   35.540000000000006,
+   35.7
+  ],
+  "aligned": true
+ },
+ {
+  "a": 36.38,
+  "b": 38.15,
+  "text": "DevOps aa software ni build,",
+  "times": [
+   36.38,
+   36.900000000000006,
+   37.06,
+   37.56,
+   37.71000000000001
+  ],
+  "aligned": true
+ },
+ {
+  "a": 38.4,
+  "b": 38.7,
+  "text": "test,",
+  "times": [
+   38.4
+  ],
+  "aligned": true
+ },
+ {
+  "a": 38.91,
+  "b": 41.01,
+  "text": "deploy, and monitor cheyadaniki help chestundi.",
+  "times": [
+   38.91,
+   39.32,
+   39.58,
+   39.99,
+   40.42,
+   40.589999999999996
+  ],
+  "aligned": true
+ },
+ {
+  "a": 41.47,
+  "b": 42.19,
+  "text": "Example ki,",
+  "times": [
+   41.47,
+   41.89
+  ],
+  "aligned": true
+ },
+ {
+  "a": 42.41,
+  "b": 44.68,
+  "text": "Agile team oka new feature develop chesindi anukondi.",
+  "times": [
+   42.41,
+   42.75999999999999,
+   42.99999999999999,
+   43.16,
+   43.43999999999999,
+   43.739999999999995,
+   44.019999999999996,
+   44.349999999999994
+  ],
+  "aligned": true
+ },
+ {
+  "a": 45.01,
+  "b": 47.94,
+  "text": "DevOps tools and CI/CD pipeline use chesi, aa feature ni",
+  "times": [
+   45.01,
+   45.38290909090909,
+   45.70254545454545,
+   45.91563636363636,
+   46.181999999999995,
+   46.661454545454546,
+   46.874545454545455,
+   47.19418181818182,
+   47.354,
+   47.780181818181816
+  ],
+  "aligned": false
+ },
+ {
+  "a": 48.14,
+  "b": 51.6,
+  "text": "automatic ga test chesi, deploy cheyadaniki help chestayi.",
+  "times": [
+   48.14,
+   48.790000000000006,
+   49.21,
+   49.800000000000004,
+   50.17,
+   50.620000000000005,
+   51.03,
+   51.190000000000005
+  ],
+  "aligned": true
+ },
+ {
+  "a": 52.0,
+  "b": 53.2,
+  "text": "Simple ga cheppalante\u2026",
+  "times": [
+   52.0,
+   52.370000000000005,
+   52.46
+  ],
+  "aligned": true
+ },
+ {
+  "a": 53.44,
+  "b": 55.59,
+  "text": "Agile helps teams build the right software,",
+  "times": [
+   53.44,
+   53.8,
+   54.12,
+   54.43,
+   54.67,
+   54.78,
+   55.06
+  ],
+  "aligned": true
+ },
+ {
+  "a": 55.8,
+  "b": 59.4,
+  "text": "and DevOps helps teams deliver and operate that software reliably.",
+  "times": [
+   55.8,
+   55.98,
+   56.45,
+   56.78,
+   57.09,
+   57.57,
+   57.77,
+   58.22,
+   58.37,
+   58.83
+  ],
+  "aligned": true
+ },
+ {
+  "a": 59.85,
+  "b": 63.17,
+  "text": "Rendu kalisi work chesthe, software ni faster ga release cheyachu,",
+  "times": [
+   59.85,
+   60.220000000000006,
+   60.480000000000004,
+   60.71,
+   61.160000000000004,
+   61.68000000000001,
+   61.800000000000004,
+   62.31,
+   62.42,
+   62.690000000000005
+  ],
+  "aligned": true
+ },
+ {
+  "a": 63.39,
+  "b": 66.64,
+  "text": "feedback quick ga teesukovachu, and continuous ga improve cheyachu!",
+  "times": [
+   63.39,
+   63.84,
+   64.02000000000001,
+   64.17,
+   64.93,
+   65.17,
+   65.75,
+   65.86,
+   66.22
+  ],
+  "aligned": true
+ },
+ {
+  "a": 67.04,
+  "b": 69.88,
+  "text": "Idi mana 100 Days of DevOps series lo Day 5!",
+  "times": [
+   67.04,
+   67.21000000000001,
+   67.43,
+   67.84,
+   68.07000000000001,
+   68.19000000000001,
+   68.55000000000001,
+   68.88000000000001,
+   69.09,
+   69.41000000000001
+  ],
+  "aligned": true
+ },
+ {
+  "a": 70.4,
+  "b": 72.62,
+  "text": "Day 6 lo SDLC ante enti,",
+  "times": [
+   70.4,
+   70.63000000000001,
+   70.93,
+   71.31,
+   71.97000000000001,
+   72.28000000000002
+  ],
+  "aligned": true
+ },
+ {
+  "a": 72.83,
+  "b": 75.66,
+  "text": "software development lo adi ela work avuthundo telusukundam.",
+  "times": [
+   72.83,
+   73.3,
+   73.85,
+   74.06,
+   74.32000000000001,
+   74.55,
+   74.79,
+   75.15
+  ],
+  "aligned": true
+ },
+ {
+  "a": 76.13,
+  "b": 78.68,
+  "text": "DevOps journey continue cheyadaniki Follow avvandi!",
+  "times": [
+   76.13,
+   76.5,
+   76.81,
+   77.28999999999999,
+   77.86,
+   78.22
+  ],
+  "aligned": true
+ }
+]
