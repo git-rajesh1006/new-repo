@@ -1,0 +1,367 @@
+[
+ {
+  "a": 0.05,
+  "b": 2.98,
+  "text": "Oka software ni fast ga develop cheyali ante\u2026",
+  "times": [
+   0.05,
+   0.22,
+   0.8,
+   1.32,
+   1.57,
+   1.71,
+   2.07,
+   2.56
+  ],
+  "aligned": true
+ },
+ {
+  "a": 3.43,
+  "b": 4.75,
+  "text": "coding okkate saripodu!",
+  "times": [
+   3.43,
+   3.87,
+   4.300000000000001
+  ],
+  "aligned": true
+ },
+ {
+  "a": 5.46,
+  "b": 10.03,
+  "text": "Software idea nunchi users daggariki reach ayye varaku oka proper process untundi.",
+  "times": [
+   5.46,
+   5.970000000000001,
+   6.25,
+   6.58,
+   7.220000000000001,
+   7.6,
+   7.87,
+   8.04,
+   8.370000000000001,
+   8.69,
+   9.23,
+   9.7
+  ],
+  "aligned": true
+ },
+ {
+  "a": 10.46,
+  "b": 11.56,
+  "text": "Ade SDLC",
+  "times": [
+   10.46,
+   10.91
+  ],
+  "aligned": true
+ },
+ {
+  "a": 11.91,
+  "b": 13.6,
+  "text": "Software Development Life Cycle!",
+  "times": [
+   11.91,
+   12.44,
+   13.0,
+   13.219999999999999
+  ],
+  "aligned": true
+ },
+ {
+  "a": 14.21,
+  "b": 16.88,
+  "text": "Day 5 lo Agile and DevOps gurinchi telusukunnam kada!",
+  "times": [
+   14.21,
+   14.42,
+   14.67,
+   15.05,
+   15.31,
+   15.57,
+   15.91,
+   16.19,
+   16.65
+  ],
+  "aligned": true
+ },
+ {
+  "a": 17.36,
+  "b": 19.71,
+  "text": "Ippudu SDLC ela work avuthundo chuddam.",
+  "times": [
+   17.36,
+   17.86,
+   18.63,
+   18.83,
+   19.029999999999998,
+   19.369999999999997
+  ],
+  "aligned": true
+ },
+ {
+  "a": 20.23,
+  "b": 21.52,
+  "text": "SDLC lo first,",
+  "times": [
+   20.23,
+   20.79,
+   20.96
+  ],
+  "aligned": true
+ },
+ {
+  "a": 21.81,
+  "b": 22.14,
+  "text": "Planning",
+  "times": [
+   21.81
+  ],
+  "aligned": true
+ },
+ {
+  "a": 22.57,
+  "b": 25.05,
+  "text": "application lo em features undalo decide chestham.",
+  "times": [
+   22.57,
+   23.16,
+   23.27,
+   23.63,
+   24.06,
+   24.37,
+   24.71
+  ],
+  "aligned": true
+ },
+ {
+  "a": 25.49,
+  "b": 25.88,
+  "text": "Next,",
+  "times": [
+   25.49
+  ],
+  "aligned": true
+ },
+ {
+  "a": 26.08,
+  "b": 27.33,
+  "text": "Design and Development",
+  "times": [
+   26.08,
+   26.56,
+   26.79
+  ],
+  "aligned": true
+ },
+ {
+  "a": 27.69,
+  "b": 28.93,
+  "text": "application design chesi,",
+  "times": [
+   27.69,
+   28.21,
+   28.560000000000002
+  ],
+  "aligned": true
+ },
+ {
+  "a": 29.12,
+  "b": 29.65,
+  "text": "code rastam.",
+  "times": [
+   29.12,
+   29.32
+  ],
+  "aligned": true
+ },
+ {
+  "a": 30.05,
+  "b": 30.58,
+  "text": "Tarvata,",
+  "times": [
+   30.05
+  ],
+  "aligned": true
+ },
+ {
+  "a": 30.78,
+  "b": 31.12,
+  "text": "Testing",
+  "times": [
+   30.78
+  ],
+  "aligned": true
+ },
+ {
+  "a": 31.5,
+  "b": 33.97,
+  "text": "application lo bugs unnayo ledo check chestham.",
+  "times": [
+   31.5,
+   32.05,
+   32.18,
+   32.519999999999996,
+   32.99,
+   33.339999999999996,
+   33.64
+  ],
+  "aligned": true
+ },
+ {
+  "a": 34.34,
+  "b": 34.74,
+  "text": "Next,",
+  "times": [
+   34.34
+  ],
+  "aligned": true
+ },
+ {
+  "a": 34.94,
+  "b": 35.58,
+  "text": "Deployment",
+  "times": [
+   34.94
+  ],
+  "aligned": true
+ },
+ {
+  "a": 35.9,
+  "b": 39.34,
+  "text": "application ni server lo release chesi users ki available chestham.",
+  "times": [
+   35.9,
+   36.43,
+   36.51,
+   36.92,
+   37.06,
+   37.38,
+   37.72,
+   38.370000000000005,
+   38.56,
+   38.980000000000004
+  ],
+  "aligned": true
+ },
+ {
+  "a": 39.69,
+  "b": 41.03,
+  "text": "Finally, Maintenance",
+  "times": [
+   39.69,
+   40.3
+  ],
+  "aligned": true
+ },
+ {
+  "a": 41.39,
+  "b": 42.93,
+  "text": "application ni monitor chesthu,",
+  "times": [
+   41.39,
+   41.910000000000004,
+   41.980000000000004,
+   42.43000000000001
+  ],
+  "aligned": true
+ },
+ {
+  "a": 43.11,
+  "b": 44.92,
+  "text": "problems fix chesi improve chestham.",
+  "times": [
+   43.11,
+   43.59,
+   43.830000000000005,
+   44.13,
+   44.580000000000005
+  ],
+  "aligned": true
+ },
+ {
+  "a": 45.34,
+  "b": 51.54,
+  "text": "Simple ga cheppalante, SDLC anedi software ni plan cheyadam nunchi maintain cheyadam varaku follow ayye",
+  "times": [
+   45.34,
+   45.800000000000004,
+   45.910000000000004,
+   46.92000000000001,
+   47.56000000000001,
+   47.93000000000001,
+   48.50000000000001,
+   48.620000000000005,
+   49.03000000000001,
+   49.35000000000001,
+   49.71000000000001,
+   50.28000000000001,
+   50.59,
+   50.900000000000006,
+   51.290000000000006
+  ],
+  "aligned": true
+ },
+ {
+  "a": 51.73,
+  "b": 52.75,
+  "text": "complete process!",
+  "times": [
+   51.73,
+   52.23
+  ],
+  "aligned": true
+ },
+ {
+  "a": 53.09,
+  "b": 56.06,
+  "text": "Idi mana 100 Days of DevOps series lo Day 6!",
+  "times": [
+   53.09,
+   53.260000000000005,
+   53.59,
+   53.910000000000004,
+   54.120000000000005,
+   54.260000000000005,
+   54.64000000000001,
+   54.980000000000004,
+   55.160000000000004,
+   55.480000000000004
+  ],
+  "aligned": true
+ },
+ {
+  "a": 56.48,
+  "b": 60.9,
+  "text": "Day 7 lo SDLC ki DevOps ki madhya connection enti anedi telusukundam.",
+  "times": [
+   56.48,
+   56.72,
+   57.05,
+   57.5,
+   58.13,
+   58.339999999999996,
+   58.82,
+   58.94,
+   59.26,
+   59.82,
+   60.13,
+   60.4
+  ],
+  "aligned": true
+ },
+ {
+  "a": 61.3,
+  "b": 63.86,
+  "text": "DevOps journey continue cheyadaniki Follow avvandi!",
+  "times": [
+   61.3,
+   61.66,
+   62.02,
+   62.42,
+   62.94,
+   63.31
+  ],
+  "aligned": true
+ }
+]

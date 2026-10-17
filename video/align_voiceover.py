@@ -8,7 +8,7 @@ import json, re, subprocess, sys, tempfile, wave
 from pocketsphinx import Decoder, Config, get_model_path
 import importlib
 
-SPOKEN = {"100": "one hundred", "2": "two", "3": "three", "4": "four", "5": "five", "6": "six", "it": "i t", "cicd": "c i c d", "smallsmall": "small small", "sdlc": "s d l c"}
+SPOKEN = {"100": "one hundred", "2": "two", "3": "three", "4": "four", "5": "five", "6": "six", "7": "seven", "it": "i t", "cicd": "c i c d", "smallsmall": "small small", "sdlc": "s d l c"}
 EXTRA = {"devops": "D EH V AA P S", "lifecycle": "L AY F S AY K AH L", "github": "G IH T HH AH B"}
 M = {'ch': ['CH'], 'th': ['T', 'HH'], 'sh': ['SH'], 'kh': ['K', 'HH'], 'dh': ['D', 'HH'], 'ee': ['IY'], 'oo': ['UW'], 'ai': ['AY'], 'au': ['AW'], 'aa': ['AA']}
 C = {'b': 'B', 'c': 'K', 'd': 'D', 'f': 'F', 'g': 'G', 'h': 'HH', 'j': 'JH', 'k': 'K', 'l': 'L', 'm': 'M', 'n': 'N', 'p': 'P', 'q': 'K', 'r': 'R', 's': 'S', 't': 'T', 'v': 'V', 'w': 'W', 'x': 'K S', 'y': 'Y', 'z': 'Z'}

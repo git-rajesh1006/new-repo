@@ -13,6 +13,7 @@ mix = lambda a, b, t: tuple(int(x + (y - x) * t) for x, y in zip(a, b))
 DAYS = {
     2: dict(white="DevOps Engineer", green="em chestadu?", chips=["Code", "Test", "Deploy", "Monitor"],
             tools="Git  •  Jenkins  •  Docker  •  Kubernetes  •  AWS"),
+    6: dict(white="SDLC", green="Life Cycle", chips=["Plan", "Design & Dev", "Test", "Deploy", "Maintain"], tools=None, cw=300, cf=36, per=3),
     5: dict(white="Agile & DevOps", green="Connection?", chips=["Small steps", "Feedback", "Improve"], tools=None, cw=300, cf=36, per=3),
     4: dict(white="Traditional IT", green="vs DevOps", chips=["Collaboration", "Automation", "Improvement"], tools=None, cw=300, cf=34, per=3),
     3: dict(white="DevOps", green="Lifecycle", chips=["Plan", "Code", "Build", "Test", "Release", "Deploy", "Operate", "Monitor"],
